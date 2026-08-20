@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220">
+
+<circle cx="110" cy="110" r="104" fill="none" stroke="#BCA05F" stroke-width="2"></circle>
+<circle cx="110" cy="110" r="95" fill="none" stroke="#BCA05F" stroke-width="0.75" opacity="0.7"></circle>
+<text x="112" y="133" font-size="72" text-anchor="middle" fill="#17251C" letter-spacing="5">LR</text>
+<rect x="105.5" y="155.5" width="9" height="9" transform="rotate(45 110 160)" fill="#BCA05F"></rect>
+</svg>

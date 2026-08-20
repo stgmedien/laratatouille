@@ -1,0 +1,370 @@
+@import "../styles/tokens/colors.css";
+@import "../styles/tokens/typography.css";
+@import "../styles/tokens/spacing.css";
+@import "../styles/tokens/elevation.css";
+@import "../styles/tokens/motion.css";
+@import "../styles/tokens/base.css";
+
+/* ---------------------------------------------------------------------------
+   Font families are supplied by next/font (Marcellus + Public Sans) and land
+   on :root as CSS variables. The design-system type tokens point at them here
+   so nothing in the component layer has to know about the loader.
+   --------------------------------------------------------------------------- */
+:root {
+  --font-display: var(--font-marcellus), "Times New Roman", Georgia, serif;
+  --font-body: var(--font-public-sans), -apple-system, "Segoe UI", Helvetica, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Skip link — visible only on keyboard focus. */
+.lr-skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--surface-accent);
+  color: var(--text-on-accent);
+  padding: var(--space-12) var(--space-20);
+  border: 0;
+  font: var(--type-eyebrow);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+}
+.lr-skip:focus {
+  left: var(--gutter);
+  top: var(--space-12);
+}
+
+/* ---------------------------------------------------------------------------
+   Layout utilities. The design-system components are inline-styled, so page
+   composition (which needs media queries) lives in classes instead.
+   --------------------------------------------------------------------------- */
+.lr-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+  width: 100%;
+}
+
+.lr-container--narrow { max-width: var(--container-narrow); }
+
+.lr-section { padding-block: var(--section-y); }
+.lr-section--tight { padding-block: clamp(40px, 6vw, 80px); }
+
+/* Two-column split: side by side on desktop, stacked on small screens. */
+.lr-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 6vw, 88px);
+  align-items: center;
+}
+.lr-split--top { align-items: start; }
+.lr-split--wide-left { grid-template-columns: 1.35fr 1fr; }
+
+/* Column grids that collapse gracefully. */
+.lr-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 clamp(32px, 6vw, 72px); }
+.lr-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--grid-gap); }
+
+@media (max-width: 900px) {
+  .lr-split,
+  .lr-split--wide-left,
+  .lr-grid-2,
+  .lr-grid-3 { grid-template-columns: 1fr; }
+  .lr-grid-3 { gap: var(--space-32); }
+  .lr-split { gap: var(--space-40); }
+  .lr-order-first { order: -1; }
+}
+
+@media (max-width: 640px) {
+  .lr-grid-2 { gap: 0; }
+}
+
+/* Media frame — photography sits at radius 8px inside layouts. */
+.lr-media {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--surface-sunken);
+}
+.lr-media img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Hero ------------------------------------------------------------------- */
+.lr-hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: var(--pine-800);
+  min-height: var(--hero-h, 640px);
+}
+.lr-hero > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.lr-hero__scrim {
+  position: absolute;
+  inset: 0;
+  background: var(--image-scrim);
+  pointer-events: none;
+}
+.lr-hero__body {
+  position: relative;
+  padding-bottom: clamp(40px, 7vw, 88px);
+  padding-top: clamp(120px, 18vw, 200px);
+}
+
+@media (max-width: 640px) {
+  .lr-hero { --hero-h: 520px; }
+}
+
+/* Header ----------------------------------------------------------------- */
+.lr-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  transition: background-color var(--dur-base) var(--ease-standard),
+              border-color var(--dur-base) var(--ease-standard);
+}
+.lr-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-24);
+  height: 84px;
+}
+@media (max-width: 640px) {
+  .lr-header__inner { height: 68px; }
+}
+
+/* Pages that open with a hero slide up under the transparent header. */
+.lr-main--over-hero { margin-top: -84px; }
+@media (max-width: 640px) {
+  .lr-main--over-hero { margin-top: -68px; }
+}
+
+.lr-nav { display: flex; align-items: center; gap: clamp(16px, 2.4vw, 32px); }
+.lr-nav__link {
+  border: 0;
+  padding-bottom: 2px;
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  border-bottom: 1px solid transparent;
+  white-space: nowrap;
+  transition: color var(--dur-fast) var(--ease-standard);
+}
+
+@media (max-width: 940px) {
+  .lr-nav--desktop { display: none; }
+}
+@media (min-width: 941px) {
+  .lr-nav--mobile-toggle { display: none; }
+}
+
+/* Mobile drawer */
+.lr-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: var(--surface-page);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-24) var(--gutter) var(--space-40);
+  overflow-y: auto;
+}
+
+/* Footer ----------------------------------------------------------------- */
+.lr-footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: var(--space-40);
+}
+@media (max-width: 900px) {
+  .lr-footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .lr-footer-grid { grid-template-columns: 1fr; gap: var(--space-32); }
+}
+
+.lr-footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-24);
+  flex-wrap: wrap;
+  padding-top: var(--space-20);
+  font: var(--type-caption);
+}
+
+/* Forms ------------------------------------------------------------------ */
+.lr-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-24);
+}
+.lr-form-grid > .lr-span-2 { grid-column: 1 / -1; }
+@media (max-width: 640px) {
+  .lr-form-grid { grid-template-columns: 1fr; }
+}
+
+/* Menu (Karte) ----------------------------------------------------------- */
+.lr-menu-column { max-width: 820px; margin-inline: auto; }
+
+.lr-tabs-scroll {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.lr-tabs-scroll::-webkit-scrollbar { display: none; }
+
+/* Long-form legal pages -------------------------------------------------- */
+.lr-prose h2 { font-size: var(--fs-h3); margin: var(--space-40) 0 var(--space-12); }
+.lr-prose h2:first-child { margin-top: 0; }
+.lr-prose p { color: var(--text-body); }
+.lr-prose address { font-style: normal; color: var(--text-body); }
+
+/* Print — the menu should print cleanly on A4. ---------------------------- */
+@media print {
+  .lr-no-print { display: none !important; }
+  body { background: #fff; }
+  .lr-section { padding-block: 16px; }
+}
+
+/* Radio pills and checkboxes -------------------------------------------------
+   These need :checked, which inline styles cannot express, so the design-system
+   skin lives here and the components only carry the class names. */
+.lr-choice { display: flex; flex-wrap: wrap; gap: var(--space-8); }
+.lr-choice--column { flex-direction: column; gap: var(--space-4); }
+
+.lr-radio { position: relative; display: inline-flex; }
+.lr-radio input {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  margin: 0; opacity: 0; cursor: pointer;
+}
+.lr-radio span {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: var(--control-h-md); padding: 0 20px;
+  font-family: var(--font-body); font-size: var(--fs-body-sm);
+  border: 1px solid var(--border-hairline); border-radius: var(--radius-sm);
+  background: var(--surface-raised); color: var(--text-body);
+  transition: var(--transition-control);
+}
+.lr-radio input:checked + span {
+  border-color: var(--pine-600);
+  background: var(--surface-accent-soft);
+  color: var(--pine-800);
+}
+.lr-radio input:focus-visible + span { box-shadow: var(--ring-focus); }
+
+.lr-checkbox {
+  display: flex; gap: var(--space-12); align-items: flex-start;
+  cursor: pointer; min-height: var(--hit-min); padding: var(--space-6) 0;
+  position: relative;
+}
+.lr-checkbox > input {
+  position: absolute; opacity: 0; width: 20px; height: 20px; margin: 0; cursor: pointer;
+}
+.lr-checkbox__box {
+  width: 20px; height: 20px; flex: 0 0 auto; margin-top: 2px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border-strong); background: var(--surface-raised);
+  border-radius: var(--radius-sm); transition: var(--transition-control);
+}
+.lr-checkbox__box svg { opacity: 0; transition: opacity var(--dur-fast) var(--ease-standard); }
+.lr-checkbox > input:checked + .lr-checkbox__box {
+  border-color: var(--pine-700); background: var(--pine-700);
+}
+.lr-checkbox > input:checked + .lr-checkbox__box svg { opacity: 1; }
+.lr-checkbox > input:focus-visible + .lr-checkbox__box { box-shadow: var(--ring-focus); }
+
+/* Fields — focus ring without per-component client state. */
+.lr-field {
+  width: 100%; font: var(--type-body); color: var(--text-body);
+  background: var(--surface-raised); border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm); padding: 0 var(--field-pad-x);
+  transition: var(--transition-control); outline: none;
+}
+.lr-field:hover { border-color: var(--linen-400); }
+.lr-field:focus { border-color: var(--pine-600); box-shadow: var(--ring-focus); }
+.lr-field[aria-invalid='true'] { border-color: var(--state-danger); }
+textarea.lr-field {
+  padding: var(--space-12) var(--field-pad-x);
+  resize: vertical; line-height: var(--lh-body); font-family: var(--font-body);
+}
+select.lr-field { appearance: none; padding-right: 40px; cursor: pointer; }
+
+/* ---------------------------------------------------------------------------
+   Verwaltungsbereich. Same tokens as the public site, denser layout.
+   --------------------------------------------------------------------------- */
+.lr-admin-header {
+  position: sticky; top: 0; z-index: 30;
+  background: var(--surface-inverse);
+  color: var(--text-on-inverse);
+}
+.lr-admin-header__inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--space-24); min-height: 64px; flex-wrap: wrap; padding-block: var(--space-8);
+}
+.lr-admin-nav { display: flex; align-items: center; gap: var(--space-24); flex-wrap: wrap; }
+.lr-admin-nav a {
+  border: 0; font-family: var(--font-body); font-size: var(--fs-caption);
+  font-weight: var(--fw-medium); letter-spacing: var(--ls-caps); text-transform: uppercase;
+  color: var(--pine-200); white-space: nowrap;
+}
+.lr-admin-nav a:hover, .lr-admin-nav a[aria-current='page'] { color: var(--linen-050); }
+
+.lr-admin-main { padding-block: var(--space-40) var(--space-96); }
+
+.lr-admin-row {
+  display: flex; align-items: flex-start; gap: var(--space-16);
+  padding: var(--space-16) 0; border-bottom: 1px solid var(--border-hairline);
+}
+.lr-admin-row__body { flex: 1; min-width: 0; }
+.lr-admin-row__actions { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; }
+
+@media (max-width: 640px) {
+  .lr-admin-row { flex-direction: column; gap: var(--space-8); }
+}
+
+.lr-admin-card {
+  background: var(--surface-card); border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-md); padding: var(--space-24) var(--space-32);
+}
+
+.lr-admin-form { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-24); }
+.lr-admin-form > .lr-span-2 { grid-column: 1 / -1; }
+@media (max-width: 720px) { .lr-admin-form { grid-template-columns: 1fr; } }
+
+.lr-langtabs {
+  display: flex; gap: var(--space-24);
+  border-bottom: 1px solid var(--border-hairline); margin-bottom: var(--space-24);
+}
+.lr-langtabs button {
+  appearance: none; background: none; border: 0; cursor: pointer;
+  padding: 0 0 var(--space-12); margin-bottom: -1px;
+  font-family: var(--font-body); font-size: var(--fs-caption); font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-caps); text-transform: uppercase;
+  color: var(--text-faint); border-bottom: 2px solid transparent;
+  transition: var(--transition-control);
+}
+.lr-langtabs button[aria-selected='true'] { color: var(--text-heading); border-bottom-color: var(--pine-600); }
+
+.lr-inline-form { display: inline; }

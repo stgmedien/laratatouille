@@ -1,0 +1,53 @@
+:root{
+/* --- Base ramps ------------------------------------------------------- */
+/* Pine: the house colour. Deep, calm forest green — dark bands, headings, veils. */
+--pine-900:#101B15;--pine-800:#17251C;--pine-700:#1F3327;--pine-600:#2A4534;--pine-500:#3A5C46;--pine-400:#64826F;--pine-200:#BCCDC1;--pine-100:#E6EEE8;
+/* Sage: the light green. Soft fills, tags, quiet labels, success. */
+--sage-800:#3F5030;--sage-700:#52663F;--sage-600:#64794D;--sage-500:#7A8F60;--sage-300:#AFC095;--sage-100:#E8EDDA;
+/* Gilt: light gold. Metal, not colour — hairlines, the ornament diamond, one tag tone. Use very sparingly. */
+--gilt-500:#BCA05F;--gilt-200:#EBDFC0;
+/* Linen: warm paper neutrals. The site is never pure white. */
+--linen-050:#FCFAF6;--linen-100:#F7F2EA;--linen-200:#EFE8DC;--linen-300:#E1D8C9;--linen-400:#C6BCAA;
+/* Ink: warm greys for text, never neutral #000. */
+--ink-900:#1E1A19;--ink-800:#2F2A28;--ink-700:#45403C;--ink-500:#6B645E;--ink-400:#8C8580;--ink-300:#B3ACA5;
+
+/* --- Semantic: surfaces ---------------------------------------------- */
+--surface-page:var(--linen-100);
+--surface-raised:var(--linen-050);
+--surface-card:var(--linen-050);
+--surface-sunken:var(--linen-200);
+--surface-inverse:var(--pine-900);
+--surface-accent:var(--pine-700);
+--surface-accent-soft:var(--sage-100);
+--surface-sage-soft:var(--sage-100);
+
+/* --- Semantic: text -------------------------------------------------- */
+--text-heading:var(--pine-800);
+--text-body:var(--ink-800);
+--text-muted:var(--ink-500);
+--text-faint:var(--ink-400);
+--text-accent:var(--sage-700);
+--text-on-inverse:var(--linen-100);
+--text-on-inverse-muted:var(--pine-200);
+--text-on-accent:#FFFFFF;
+--text-link:var(--pine-600);
+--text-link-hover:var(--pine-800);
+
+/* --- Semantic: lines ------------------------------------------------- */
+--border-hairline:var(--linen-300);
+--border-strong:var(--ink-300);
+--border-inverse:color-mix(in oklab,var(--linen-100) 22%,transparent);
+--border-accent:var(--pine-600);
+--rule-gilt:var(--gilt-500);
+
+/* --- Semantic: state ------------------------------------------------- */
+--state-success:var(--sage-600);
+--state-notice:var(--gilt-500);
+--state-danger:#9B2C20;
+--focus-ring:color-mix(in oklab,var(--pine-600) 45%,transparent);
+
+/* --- Imagery --------------------------------------------------------- */
+/* Photography is warm, low-contrast, daylight. Never cool or clinical. */
+--image-tint:color-mix(in oklab,var(--pine-900) 30%,transparent);
+--image-scrim:linear-gradient(to top,color-mix(in oklab,var(--pine-900) 74%,transparent) 0%,color-mix(in oklab,var(--pine-900) 20%,transparent) 55%,transparent 100%);
+}

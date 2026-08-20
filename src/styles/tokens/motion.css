@@ -1,0 +1,19 @@
+:root{
+--dur-instant:90ms; /* @kind other */
+--dur-fast:160ms; /* @kind other */
+--dur-base:240ms; /* @kind other */
+--dur-slow:420ms; /* @kind other */
+--dur-veil:600ms; /* @kind other */
+--ease-standard:cubic-bezier(.4,0,.2,1); /* @kind other */
+--ease-out:cubic-bezier(.16,1,.3,1); /* @kind other */
+--ease-in:cubic-bezier(.4,0,1,1); /* @kind other */
+/* No bounce, no spring. Movement is short and only ever fade + 2–8px shift. */
+--motion-lift:translateY(-2px); /* @kind other */
+--motion-press:translateY(1px); /* @kind other */
+--transition-control:background-color var(--dur-fast) var(--ease-standard),color var(--dur-fast) var(--ease-standard),border-color var(--dur-fast) var(--ease-standard),transform var(--dur-fast) var(--ease-standard),box-shadow var(--dur-fast) var(--ease-standard); /* @kind other */
+}
+@media (prefers-reduced-motion:reduce){:root{--dur-instant:0ms; /* @kind other */
+--dur-fast:0ms; /* @kind other */
+--dur-base:0ms; /* @kind other */
+--dur-slow:0ms; /* @kind other */
+--dur-veil:0ms /* @kind other */}}

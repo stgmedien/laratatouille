@@ -1,0 +1,25 @@
+<!-- @dsCard group="Components" viewport="700x360" name="Forms" subtitle="Input, textarea, select, checkbox, radio group" -->
+<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style>body{padding:24px;background:var(--surface-page)}#root{display:grid;grid-template-columns:1fr 1fr;gap:24px 28px;align-items:start}</style></head>
+<body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+const { Input, Textarea, Select, Checkbox, RadioGroup } = window.LaRatatouilleDesignSystem_9f9119;
+function Demo(){
+  const [news,setNews]=React.useState(true);
+  const [area,setArea]=React.useState('Terrasse');
+  return (<>
+    <Input id="n" label="Name" defaultValue="Julia Bergmann" />
+    <Input id="m" label="E-Mail" hint="für die Bestätigung" type="email" error="Bitte prüfen Sie die Adresse." defaultValue="julia@" />
+    <Select id="p" label="Personen" options={["2 Personen","3 Personen","4 Personen"]} />
+    <Input id="d" label="Datum" type="date" defaultValue="2026-09-04" />
+    <RadioGroup label="Bereich" value={area} onChange={setArea} options={["Innen","Terrasse","Chef's Table"]} style={{gridColumn:'1 / -1'}} />
+    <Textarea id="a" label="Anmerkungen" hint="optional" rows={3} placeholder="Allergien, Anlass, Kinderstuhl …" style={{gridColumn:'1 / -1'}} />
+    <Checkbox id="c" checked={news} onChange={setNews} label="Newsletter" description="Alle vier Wochen, neue Karte und Weinabende." style={{gridColumn:'1 / -1'}} />
+  </>);
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script></body></html>

@@ -1,0 +1,15 @@
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--surface-page);color:var(--text-body);font:var(--type-body);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4{margin:0;color:var(--text-heading);font-family:var(--font-display);font-weight:var(--fw-regular);letter-spacing:var(--ls-heading);text-wrap:balance}
+h1{font-size:var(--fs-h1);line-height:var(--lh-heading)}
+h2{font-size:var(--fs-h2);line-height:var(--lh-heading)}
+h3{font-size:var(--fs-h3);line-height:var(--lh-tight)}
+h4{font-size:var(--fs-h4);line-height:var(--lh-tight)}
+p{margin:0 0 1em;max-width:var(--measure-prose);text-wrap:pretty}
+a{color:var(--text-link);text-decoration:none;border-bottom:1px solid color-mix(in oklab,var(--text-link) 40%,transparent);transition:color var(--dur-fast) var(--ease-standard),border-color var(--dur-fast) var(--ease-standard)}
+a:hover{color:var(--text-link-hover);border-bottom-color:var(--text-link-hover)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:none;box-shadow:var(--ring-focus)}
+img{display:block;max-width:100%}
+hr{border:0;border-top:1px solid var(--border-hairline);margin:var(--space-32) 0}
+::selection{background:var(--sage-100);color:var(--pine-800)}
+.eyebrow{font:var(--type-eyebrow);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--text-accent)}
