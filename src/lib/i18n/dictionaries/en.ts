@@ -74,7 +74,7 @@ export const en: Dictionary = {
         kitchen: { label: 'Kitchen', value: 'Tue – Thu 19:00 – 21:30\nFri & Sat 13:00 – 14:30 and 19:00 – 21:30' },
         closed: { label: 'Closed', value: 'Sunday and Monday' },
         booking: { label: 'Booking', value: 'The house has few tables. At weekends we suggest a few days’ notice.' },
-        languages: { label: 'In the dining room', value: 'German, Spanish and English' },
+        languages: { label: 'In the dining room', value: 'German, Spanish, English and French' },
       },
     },
     reserve: {
@@ -114,7 +114,7 @@ export const en: Dictionary = {
       body1:
         'Both trained in respected establishments in the Black Forest and then deepened the craft in Germany, Austria and Spain.',
       body2:
-        'Before La Ratatouille they ran the Ikarus in Dénia. Today Timo Kaiser is at the stove and Gesine Janasik runs the dining room — in German, Spanish and English.',
+        'Before La Ratatouille they ran the Ikarus in Dénia. Today Timo Kaiser is at the stove and Gesine Janasik runs the dining room — in German, Spanish, English and French.',
       imageAlt: 'Guests having dinner in the dining room',
     },
     principles: {
@@ -193,7 +193,7 @@ export const en: Dictionary = {
       hours: { label: 'Kitchen', value: 'Tue – Thu 19:00 – 21:30\nFri & Sat 13:00 – 14:30 and 19:00 – 21:30' },
       closed: { label: 'Closed', value: 'Sunday and Monday' },
       booking: { label: 'Notice', value: 'At weekends the house is usually fully booked.' },
-      languages: { label: 'In the dining room', value: 'German, Spanish and English' },
+      languages: { label: 'In the dining room', value: 'German, Spanish, English and French' },
       phoneLabel: 'Rather by phone',
     },
   },

@@ -74,7 +74,7 @@ export const es: Dictionary = {
         kitchen: { label: 'Cocina', value: 'Ma – Ju 19:00 – 21:30\nVi & Sá 13:00 – 14:30 y 19:00 – 21:30' },
         closed: { label: 'Días de cierre', value: 'Domingo y lunes' },
         booking: { label: 'Reservas', value: 'La casa tiene pocas mesas. Los fines de semana conviene reservar con algunos días de antelación.' },
-        languages: { label: 'En el comedor', value: 'Alemán, español e inglés' },
+        languages: { label: 'En el comedor', value: 'Alemán, español, inglés y francés' },
       },
     },
     reserve: {
@@ -114,7 +114,7 @@ export const es: Dictionary = {
       body1:
         'Ambos se formaron en establecimientos de prestigio de la Selva Negra y después profundizaron en su oficio en Alemania, Austria y España.',
       body2:
-        'Antes de La Ratatouille estuvieron al frente del Ikarus en Dénia. Hoy Timo Kaiser está en los fogones y Gesine Janasik lleva el comedor — en alemán, español e inglés.',
+        'Antes de La Ratatouille estuvieron al frente del Ikarus en Dénia. Hoy Timo Kaiser está en los fogones y Gesine Janasik lleva el comedor — en alemán, español, inglés y francés.',
       imageAlt: 'Clientes cenando en el comedor',
     },
     principles: {
@@ -193,7 +193,7 @@ export const es: Dictionary = {
       hours: { label: 'Cocina', value: 'Ma – Ju 19:00 – 21:30\nVi & Sá 13:00 – 14:30 y 19:00 – 21:30' },
       closed: { label: 'Días de cierre', value: 'Domingo y lunes' },
       booking: { label: 'Antelación', value: 'Los fines de semana la casa suele estar completa.' },
-      languages: { label: 'En el comedor', value: 'Alemán, español e inglés' },
+      languages: { label: 'En el comedor', value: 'Alemán, español, inglés y francés' },
       phoneLabel: 'Mejor por teléfono',
     },
   },

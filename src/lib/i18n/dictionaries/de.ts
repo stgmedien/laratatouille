@@ -72,7 +72,7 @@ export const de = {
         kitchen: { label: 'Küche', value: 'Di – Do 19:00 – 21:30\nFr & Sa 13:00 – 14:30 und 19:00 – 21:30' },
         closed: { label: 'Ruhetage', value: 'Sonntag und Montag' },
         booking: { label: 'Reservierung', value: 'Das Haus hat wenige Tische. An Wochenenden empfehlen wir einige Tage Vorlauf.' },
-        languages: { label: 'Im Gastraum', value: 'Deutsch, Spanisch und Englisch' },
+        languages: { label: 'Im Gastraum', value: 'Deutsch, Spanisch, Englisch und Französisch' },
       },
     },
     reserve: {
@@ -112,7 +112,7 @@ export const de = {
       body1:
         'Beide wurden in renommierten Betrieben im Schwarzwald ausgebildet und haben ihr Handwerk anschließend in Deutschland, Österreich und Spanien vertieft.',
       body2:
-        'Vor La Ratatouille führten sie das Ikarus in Dénia. Heute steht Timo Kaiser am Herd, Gesine Janasik führt den Gastraum — auf Deutsch, Spanisch und Englisch.',
+        'Vor La Ratatouille führten sie das Ikarus in Dénia. Heute steht Timo Kaiser am Herd, Gesine Janasik führt den Gastraum — auf Deutsch, Spanisch, Englisch und Französisch.',
       imageAlt: 'Gäste beim Abendessen im Gastraum',
     },
     principles: {
@@ -191,7 +191,7 @@ export const de = {
       hours: { label: 'Küche', value: 'Di – Do 19:00 – 21:30\nFr & Sa 13:00 – 14:30 und 19:00 – 21:30' },
       closed: { label: 'Ruhetage', value: 'Sonntag und Montag' },
       booking: { label: 'Vorlauf', value: 'An Wochenenden ist das Haus meist ausgebucht.' },
-      languages: { label: 'Im Gastraum', value: 'Deutsch, Spanisch und Englisch' },
+      languages: { label: 'Im Gastraum', value: 'Deutsch, Spanisch, Englisch und Französisch' },
       phoneLabel: 'Lieber telefonisch',
     },
   },
