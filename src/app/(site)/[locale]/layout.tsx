@@ -38,7 +38,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: { default: dict.meta.home.title, template: `%s — ${HOUSE.name}` },
     description: dict.meta.home.description,
     applicationName: HOUSE.name,
-    formatDetection: { telephone: true, address: true, email: true },
   };
 }
 
