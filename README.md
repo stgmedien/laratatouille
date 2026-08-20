@@ -96,15 +96,48 @@ ein „Antworten“ im Postfach geht direkt an ihn.
 
 ---
 
+## Aktueller Stand
+
+| | |
+| --- | --- |
+| Repository | https://github.com/stgmedien/laratatouille (Branch `main`) |
+| Vercel-Projekt | `stgmedien-6458s-projects/la-ratatouille` |
+| Adresse | https://la-ratatouille.vercel.app |
+| Datenbank | Neon, `neondb` in `eu-central-1`, Schema und Startinhalte eingespielt |
+
+Ein Push auf `main` löst ein Produktions-Deployment aus; jeder andere Branch bekommt ein
+Preview-Deployment.
+
+**Die Adresse ist noch geschützt.** In den Projekteinstellungen steht *Deployment Protection →
+Vercel Authentication* auf „all except custom domains“: Wer bei Vercel angemeldet ist, sieht die
+Seite, alle anderen bekommen eine Weiterleitung zum Login. Sobald die echte Domain angebunden
+ist, ist diese öffentlich erreichbar. Wer die `vercel.app`-Adresse vorher öffentlich zeigen will,
+schaltet den Schutz unter *Settings → Deployment Protection* ab.
+
+Solange `NEXT_PUBLIC_SITE_URL` auf eine `vercel.app`-Adresse zeigt, sperrt `robots.txt`
+Suchmaschinen komplett aus — damit die Testadresse nicht neben der echten Seite in Google landet.
+Mit dem Umstellen auf die eigene Domain öffnet sich das von selbst.
+
+### Eigene Domain anbinden
+
+1. In Vercel unter *Settings → Domains* die Domain hinzufügen und die angezeigten DNS-Einträge
+   beim Domain-Anbieter setzen.
+2. `NEXT_PUBLIC_SITE_URL` auf genau diese Adresse ändern (mit `https://`, ohne Schrägstrich am
+   Ende) und einmal neu deployen. Davon hängen Sitemap, Canonical-Tags, die Sprachverweise und
+   die Freigabe für Suchmaschinen ab.
+
+---
+
 ## Auf Vercel veröffentlichen
+
+Für ein neues Projekt von Grund auf:
 
 1. Projekt auf [vercel.com](https://vercel.com) importieren (oder `npx vercel` im Projektordner).
 2. Unter *Settings → Environment Variables* alle Variablen aus `.env.example` eintragen —
    für *Production*, *Preview* und *Development*.
-3. `NEXT_PUBLIC_SITE_URL` auf die echte Adresse setzen, z. B. `https://www.laratatouille.es`.
-   Davon hängen Sitemap, Canonical-Tags und die Sprachverweise ab.
-4. Deployen. Beim ersten Mal danach einmal `npm run db:seed` lokal gegen dieselbe Datenbank
-   laufen lassen, falls noch keine Karte drinsteht.
+3. `NEXT_PUBLIC_SITE_URL` auf die echte Adresse setzen.
+4. Deployen. Danach einmal `npm run db:seed` lokal gegen dieselbe Datenbank laufen lassen,
+   falls noch keine Karte drinsteht.
 
 Die Ordner `Design System/` und `Bilder/` sind über `.vercelignore` vom Deployment ausgenommen;
 sie bleiben als Quellmaterial im Projekt liegen.
