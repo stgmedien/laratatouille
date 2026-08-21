@@ -92,7 +92,7 @@ export const en: Dictionary = {
     eyebrow: 'Menu',
     title: 'Classical cooking, Mediterranean produce',
     intro: 'A menu that travels the Mediterranean and changes with the season. All prices include IVA.',
-    imageAlt: 'Beef carpaccio with rocket, parmesan and pine nuts',
+    imageAlt: 'Cured salmon with leaf salad, sprouts and dill on a laid table',
     allergens:
       'We are glad to talk you through allergens and additives at the table. Please tell us before ordering what you cannot eat.',
     legend: 'Marks used on the menu',

@@ -90,7 +90,7 @@ export const de = {
     eyebrow: 'Speisekarte',
     title: 'Klassische Küche, mediterranes Produkt',
     intro: 'Eine Karte quer durchs Mittelmeer, die mit der Saison wechselt. Alle Preise inklusive IVA.',
-    imageAlt: 'Rindercarpaccio mit Rucola, Parmesan und Pinienkernen',
+    imageAlt: 'Gebeizter Lachs mit Blattsalat, Sprossen und Dill auf gedecktem Tisch',
     allergens:
       'Zu Allergenen und Zusatzstoffen geben wir Ihnen gern am Tisch Auskunft. Sagen Sie uns bitte vor der Bestellung, was Sie nicht essen können.',
     legend: 'Kennzeichnungen auf der Karte',

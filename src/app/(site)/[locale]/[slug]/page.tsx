@@ -27,7 +27,7 @@ const META_KEY: Record<Exclude<PageKey, 'home'>, 'menu' | 'house' | 'reserve' | 
 const HERO_PAGES: PageKey[] = ['house'];
 
 const OG_IMAGE: Partial<Record<PageKey, string>> = {
-  menu: '/images/carpaccio.jpg',
+  menu: '/images/lachs.jpg',
   house: '/images/kueche.jpg',
   reserve: '/images/rinderfilet.jpg',
 };

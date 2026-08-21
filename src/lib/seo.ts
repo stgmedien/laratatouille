@@ -27,7 +27,7 @@ const IMAGE_SIZES: Record<string, { width: number; height: number }> = {
   '/images/hero.jpg': { width: 1448, height: 1086 },
   '/images/gastraum.jpg': { width: 2200, height: 1650 },
   '/images/kueche.jpg': { width: 2200, height: 1464 },
-  '/images/carpaccio.jpg': { width: 2200, height: 1467 },
+  '/images/lachs.jpg': { width: 1539, height: 1022 },
   '/images/rinderfilet.jpg': { width: 2200, height: 1466 },
 };
 

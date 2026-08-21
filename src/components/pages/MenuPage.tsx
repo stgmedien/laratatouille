@@ -32,8 +32,11 @@ export async function MenuPage({ locale, dict }: { locale: Locale; dict: Diction
         <div className="lr-container">
           <div className="lr-media lr-no-print" style={{ aspectRatio: '21 / 9', borderRadius: 'var(--radius-lg)' }}>
             <Image
-              src="/images/carpaccio.jpg" alt={t.imageAlt} fill
-              sizes="(max-width: 1200px) 100vw, 1200px" style={{ objectFit: 'cover' }} priority
+              src="/images/lachs.jpg" alt={t.imageAlt} fill
+              sizes="(max-width: 1200px) 100vw, 1200px" priority
+              // Der Teller sitzt in der unteren Bildhälfte; mittig beschnitten
+              // würde das schmale Band ihn anschneiden.
+              style={{ objectFit: 'cover', objectPosition: 'center 58%' }}
             />
           </div>
         </div>

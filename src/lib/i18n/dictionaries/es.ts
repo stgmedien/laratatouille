@@ -92,7 +92,7 @@ export const es: Dictionary = {
     eyebrow: 'Carta',
     title: 'Cocina clásica, producto mediterráneo',
     intro: 'Una carta que recorre el Mediterráneo y cambia con la temporada. Todos los precios incluyen IVA.',
-    imageAlt: 'Carpaccio de ternera con rúcula, parmesano y piñones',
+    imageAlt: 'Salmón marinado con ensalada, brotes y eneldo en una mesa puesta',
     allergens:
       'Le informamos con gusto sobre alérgenos y aditivos en la mesa. Díganos antes de pedir qué no puede comer.',
     legend: 'Indicaciones de la carta',
