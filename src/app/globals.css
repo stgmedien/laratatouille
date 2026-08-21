@@ -368,3 +368,32 @@ select.lr-field { appearance: none; padding-right: 40px; cursor: pointer; }
 .lr-langtabs button[aria-selected='true'] { color: var(--text-heading); border-bottom-color: var(--pine-600); }
 
 .lr-inline-form { display: inline; }
+
+/* Hinweis-Banner über dem Kopf ---------------------------------------------
+   Scrollt mit, statt zu kleben — der Kopf darunter bleibt der sticky Teil. */
+.lr-banner { position: relative; z-index: 41; }
+.lr-banner__inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--space-12);
+  padding-block: var(--space-12);
+  text-align: center;
+}
+@media (max-width: 640px) {
+  .lr-banner__inner { text-align: left; justify-content: flex-start; }
+}
+
+/* Marker auf dem Lageplan — sitzt in der Bildmitte, weil das Bild auf das
+   Haus zentriert gebaut ist. */
+.lr-map-pin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--pine-700);
+  box-shadow: 0 0 0 3px var(--linen-050), 0 0 0 4px var(--gilt-500), var(--shadow-md);
+}

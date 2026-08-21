@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { Button, Card, InfoRow, Quote, Rule, SectionHeading } from '@/components/ds';
 import { Hero } from '@/components/site/Hero';
 import { MultilineText } from '@/components/site/MultilineText';
+import { LocationMap } from '@/components/site/LocationMap';
 import { Section } from '@/components/site/Section';
 import { getReviews } from '@/lib/db/menu';
 import { ADDRESS_LINES, HOUSE } from '@/lib/house';
@@ -80,23 +81,7 @@ export async function HousePage({ locale, dict }: { locale: Locale; dict: Dictio
             </div>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-16)' }}>
-            <div
-              className="lr-media"
-              style={{ aspectRatio: '4 / 3', border: '1px solid var(--border-hairline)' }}
-            >
-              <iframe
-                title={t.contact.directions}
-                src="https://www.openstreetmap.org/export/embed.html?bbox=0.0035%2C38.8065%2C0.0235%2C38.8185&layer=mapnik&marker=38.8125%2C0.0135"
-                style={{ width: '100%', height: '100%', border: 0 }}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
-            <a href={HOUSE.mapsUrl} target="_blank" rel="noreferrer noopener" style={{ font: 'var(--type-body-sm)' }}>
-              {t.contact.directions}
-            </a>
-          </div>
+          <LocationMap label={t.contact.directions} alt={t.contact.mapAlt} />
         </div>
       </Section>
     </>

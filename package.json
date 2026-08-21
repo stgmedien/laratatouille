@@ -10,7 +10,8 @@
     "lint": "eslint src",
     "typecheck": "tsc --noEmit",
     "db:setup": "node --env-file-if-exists=.env.local scripts/db-setup.mjs",
-    "db:seed": "node --env-file-if-exists=.env.local scripts/db-setup.mjs --seed"
+    "db:seed": "node --env-file-if-exists=.env.local scripts/db-setup.mjs --seed",
+    "build:map": "node scripts/build-map.mjs"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.1",

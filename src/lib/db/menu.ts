@@ -5,7 +5,7 @@ import { SEED_CATEGORIES, SEED_REVIEWS, SEED_SETTINGS } from './seed-data';
 import {
   localiseDish, pick,
   type CategoryRow, type DishRow, type LocalisedCategory, type LocalisedDish,
-  type LocalisedMenuSettings, type MenuSettingsRow, type ReviewRow,
+  type AnnouncementRow, type LocalisedMenuSettings, type MenuSettingsRow, type ReviewRow,
 } from './types';
 
 /* -------------------------------------------------------------------------
@@ -113,4 +113,29 @@ export async function getMenuSettings(locale: Locale): Promise<LocalisedMenuSett
 export async function getReviews(limit?: number): Promise<ReviewRow[]> {
   const rows = (await readReviews()).filter((r) => r.is_published && r.quote.trim());
   return typeof limit === 'number' ? rows.slice(0, limit) : rows;
+}
+
+/**
+ * The notice to show above the site right now, or null. Dates are compared in
+ * the restaurant's own timezone — a banner that runs "until the 14th" should
+ * not vanish at two in the morning because the server thinks in UTC.
+ */
+export async function getActiveAnnouncement(locale: Locale): Promise<string | null> {
+  if (!hasDatabase) return null;
+
+  const sql = db();
+  const rows = (await sql`
+    SELECT id, sort_order, is_published,
+           starts_on::text AS starts_on, ends_on::text AS ends_on,
+           text_de, text_es, text_en
+    FROM announcements
+    WHERE is_published
+      AND (starts_on IS NULL OR starts_on <= (NOW() AT TIME ZONE 'Europe/Madrid')::date)
+      AND (ends_on   IS NULL OR ends_on   >= (NOW() AT TIME ZONE 'Europe/Madrid')::date)
+    ORDER BY sort_order, id
+    LIMIT 1
+  `) as AnnouncementRow[];
+
+  const text = rows[0] ? pick(rows[0], 'text', locale) : '';
+  return text || null;
 }

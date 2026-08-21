@@ -44,6 +44,23 @@ export interface ReviewRow {
   source: string;
 }
 
+/**
+ * A short notice shown as a banner above the site. `starts_on` / `ends_on`
+ * are optional; when set, the banner comes and goes on its own so a closure
+ * can be prepared weeks in advance and never has to be switched off by hand.
+ */
+export interface AnnouncementRow {
+  id: number;
+  sort_order: number;
+  is_published: boolean;
+  /** ISO date (YYYY-MM-DD) or null. */
+  starts_on: string | null;
+  ends_on: string | null;
+  text_de: string;
+  text_es: string;
+  text_en: string;
+}
+
 export interface MenuSettingsRow {
   eyebrow_de: string; eyebrow_es: string; eyebrow_en: string;
   title_de: string; title_es: string; title_en: string;

@@ -48,6 +48,11 @@ export function restaurantJsonLd(locale: Locale, description: string) {
     priceRange: '€€',
     hasMenu: absolute(pathFor('menu', locale)),
     acceptsReservations: absolute(pathFor('reserve', locale)),
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: HOUSE.geo.lat,
+      longitude: HOUSE.geo.lon,
+    },
     address: {
       '@type': 'PostalAddress',
       streetAddress: HOUSE.street,

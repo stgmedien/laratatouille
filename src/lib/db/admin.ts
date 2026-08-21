@@ -2,7 +2,8 @@ import 'server-only';
 import { db, hasDatabase } from './client';
 import {
   DISH_TAGS,
-  type CategoryRow, type DishRow, type DishTag, type MenuSettingsRow, type ReviewRow,
+  type AnnouncementRow, type CategoryRow, type DishRow, type DishTag,
+  type MenuSettingsRow, type ReviewRow,
 } from './types';
 
 export class NoDatabaseError extends Error {
@@ -255,6 +256,79 @@ export async function moveReview(id: number, direction: 'up' | 'down'): Promise<
 
   await s`UPDATE reviews SET sort_order = ${neighbour.sort_order} WHERE id = ${id}`;
   await s`UPDATE reviews SET sort_order = ${current.sort_order} WHERE id = ${neighbour.id}`;
+}
+
+/* --- Notices -------------------------------------------------------------- */
+
+export async function listAnnouncements(): Promise<AnnouncementRow[]> {
+  return (await sql()`
+    SELECT id, sort_order, is_published,
+           starts_on::text AS starts_on, ends_on::text AS ends_on,
+           text_de, text_es, text_en
+    FROM announcements ORDER BY sort_order, id
+  `) as AnnouncementRow[];
+}
+
+export async function getAnnouncement(id: number): Promise<AnnouncementRow | null> {
+  const rows = (await sql()`
+    SELECT id, sort_order, is_published,
+           starts_on::text AS starts_on, ends_on::text AS ends_on,
+           text_de, text_es, text_en
+    FROM announcements WHERE id = ${id}
+  `) as AnnouncementRow[];
+  return rows[0] ?? null;
+}
+
+export type AnnouncementInput = Omit<AnnouncementRow, 'id' | 'sort_order'>;
+
+export async function createAnnouncement(data: AnnouncementInput): Promise<number> {
+  const rows = (await sql()`
+    INSERT INTO announcements (sort_order, is_published, starts_on, ends_on, text_de, text_es, text_en)
+    VALUES (
+      (SELECT COALESCE(MAX(sort_order), 0) + 1 FROM announcements),
+      ${data.is_published}, ${data.starts_on}, ${data.ends_on},
+      ${data.text_de}, ${data.text_es}, ${data.text_en}
+    )
+    RETURNING id
+  `) as { id: number }[];
+  return rows[0].id;
+}
+
+export async function updateAnnouncement(id: number, data: AnnouncementInput): Promise<void> {
+  await sql()`
+    UPDATE announcements SET
+      is_published = ${data.is_published},
+      starts_on = ${data.starts_on}, ends_on = ${data.ends_on},
+      text_de = ${data.text_de}, text_es = ${data.text_es}, text_en = ${data.text_en},
+      updated_at = NOW()
+    WHERE id = ${id}
+  `;
+}
+
+export async function deleteAnnouncement(id: number): Promise<void> {
+  await sql()`DELETE FROM announcements WHERE id = ${id}`;
+}
+
+export async function moveAnnouncement(id: number, direction: 'up' | 'down'): Promise<void> {
+  const s = sql();
+
+  const neighbours = (direction === 'up'
+    ? await s`SELECT id, sort_order FROM announcements
+              WHERE sort_order < (SELECT sort_order FROM announcements WHERE id = ${id})
+              ORDER BY sort_order DESC LIMIT 1`
+    : await s`SELECT id, sort_order FROM announcements
+              WHERE sort_order > (SELECT sort_order FROM announcements WHERE id = ${id})
+              ORDER BY sort_order ASC LIMIT 1`) as Neighbour[];
+
+  const neighbour = neighbours[0];
+  if (!neighbour) return;
+
+  const currentRows = (await s`SELECT sort_order FROM announcements WHERE id = ${id}`) as Neighbour[];
+  const current = currentRows[0];
+  if (!current) return;
+
+  await s`UPDATE announcements SET sort_order = ${neighbour.sort_order} WHERE id = ${id}`;
+  await s`UPDATE announcements SET sort_order = ${current.sort_order} WHERE id = ${neighbour.id}`;
 }
 
 /* --- Menu page settings --------------------------------------------------- */

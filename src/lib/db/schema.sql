@@ -77,3 +77,19 @@ CREATE TABLE IF NOT EXISTS reviews (
   created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+-- Short notices shown as a banner above the site — a closure over the
+-- holidays, a change of hours. Dates are optional: with them the banner
+-- appears and disappears on its own, without them it runs until switched off.
+CREATE TABLE IF NOT EXISTS announcements (
+  id            SERIAL PRIMARY KEY,
+  sort_order    INTEGER     NOT NULL DEFAULT 0,
+  is_published  BOOLEAN     NOT NULL DEFAULT TRUE,
+  starts_on     DATE,
+  ends_on       DATE,
+  text_de       TEXT        NOT NULL,
+  text_es       TEXT        NOT NULL DEFAULT '',
+  text_en       TEXT        NOT NULL DEFAULT '',
+  created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);

@@ -4,9 +4,11 @@ import { revalidatePath } from 'next/cache';
 import { cookies, headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import {
-  createCategory, createDish, createReview, deleteCategory, deleteDish, deleteReview,
-  moveCategory, moveDish, moveReview, updateCategory, updateDish, updateReview, updateSettings,
-  type CategoryInput, type DishInput, type ReviewInput,
+  createAnnouncement, createCategory, createDish, createReview,
+  deleteAnnouncement, deleteCategory, deleteDish, deleteReview,
+  moveAnnouncement, moveCategory, moveDish, moveReview,
+  updateAnnouncement, updateCategory, updateDish, updateReview, updateSettings,
+  type AnnouncementInput, type CategoryInput, type DishInput, type ReviewInput,
 } from '@/lib/db/admin';
 import { DISH_TAGS, type MenuSettingsRow } from '@/lib/db/types';
 import {
@@ -169,6 +171,61 @@ export async function shiftDish(formData: FormData): Promise<void> {
   await moveDish(Number(formData.get('id')), direction);
   refreshSite();
   redirect('/admin');
+}
+
+/* --- Notices -------------------------------------------------------------- */
+
+/** An empty date field means "no limit", not the epoch. */
+const dateOrNull = (formData: FormData, key: string) => {
+  const value = String(formData.get(key) ?? '').trim();
+  return /^\d{4}-\d{2}-\d{2}$/.test(value) ? value : null;
+};
+
+function announcementInput(formData: FormData): AnnouncementInput {
+  return {
+    is_published: flag(formData, 'is_published'),
+    starts_on: dateOrNull(formData, 'starts_on'),
+    ends_on: dateOrNull(formData, 'ends_on'),
+    text_de: text(formData, 'text_de'),
+    text_es: text(formData, 'text_es'),
+    text_en: text(formData, 'text_en'),
+  };
+}
+
+export async function saveAnnouncement(_prev: FormState, formData: FormData): Promise<FormState> {
+  await requireSession();
+
+  const data = announcementInput(formData);
+  if (!data.text_de) return { error: 'Der deutsche Text fehlt.' };
+  if (data.starts_on && data.ends_on && data.ends_on < data.starts_on) {
+    return { error: 'Das Ende liegt vor dem Anfang.' };
+  }
+
+  const rawId = String(formData.get('id') ?? '');
+  try {
+    if (rawId && rawId !== 'neu') await updateAnnouncement(Number(rawId), data);
+    else await createAnnouncement(data);
+  } catch (error) {
+    return { error: error instanceof Error ? error.message : 'Speichern fehlgeschlagen.' };
+  }
+
+  refreshSite();
+  redirect('/admin/hinweise');
+}
+
+export async function removeAnnouncement(formData: FormData): Promise<void> {
+  await requireSession();
+  await deleteAnnouncement(Number(formData.get('id')));
+  refreshSite();
+  redirect('/admin/hinweise');
+}
+
+export async function shiftAnnouncement(formData: FormData): Promise<void> {
+  await requireSession();
+  const direction = formData.get('direction') === 'up' ? 'up' : 'down';
+  await moveAnnouncement(Number(formData.get('id')), direction);
+  refreshSite();
+  redirect('/admin/hinweise');
 }
 
 /* --- Guest reviews -------------------------------------------------------- */

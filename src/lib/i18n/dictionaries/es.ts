@@ -143,6 +143,7 @@ export const es: Dictionary = {
       phone: 'Teléfono',
       email: 'Correo electrónico',
       directions: 'Cómo llegar en Google Maps',
+      mapAlt: 'Plano de Sanet y Negrals con La Ratatouille en la Calle Mayor',
       cta: 'Reservar mesa',
     },
   },
@@ -248,9 +249,9 @@ export const es: Dictionary = {
     cookiesHeading: 'Cookies y seguimiento',
     cookiesBody:
       'Esta web no utiliza cookies de análisis ni de marketing. Solo se emplea una cookie técnica en el área de administración protegida, irrelevante para quien visita las páginas públicas. Su elección de idioma se refleja en la dirección de la página, no en una cookie.',
-    fontsHeading: 'Tipografías y mapa',
+    fontsHeading: 'Tipografías y plano',
     fontsBody:
-      'Las tipografías se sirven desde nuestro propio servidor; no se transmiten datos a Google. El plano de la página «La casa» se carga desde OpenStreetMap, lo que comunica su dirección IP a OpenStreetMap.',
+      'Las tipografías se sirven desde nuestro propio servidor; no se transmiten datos a Google. El plano de la página «La casa» es una imagen alojada en nuestro propio servidor, no un mapa incrustado — tampoco ahí se establece conexión con terceros. Los datos cartográficos proceden de OpenStreetMap.',
     rightsHeading: 'Sus derechos',
     rightsBody:
       'Tiene derecho de acceso, rectificación, supresión, limitación del tratamiento, portabilidad y oposición. Diríjase para ello a la dirección indicada arriba. Además puede presentar una reclamación ante una autoridad de control, en España la Agencia Española de Protección de Datos (aepd.es).',

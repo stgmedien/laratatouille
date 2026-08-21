@@ -143,6 +143,7 @@ export const en: Dictionary = {
       phone: 'Phone',
       email: 'Email',
       directions: 'Directions in Google Maps',
+      mapAlt: 'Map of Sanet y Negrals with La Ratatouille on Calle Mayor',
       cta: 'Book a table',
     },
   },
@@ -250,7 +251,7 @@ export const en: Dictionary = {
       'This website sets no analytics or marketing cookies. One technical cookie is used in the protected admin area only and is irrelevant to visitors of the public pages. Your language choice is carried in the page address, not in a cookie.',
     fontsHeading: 'Fonts and map',
     fontsBody:
-      'The fonts used are served from our own server; no data is sent to Google. The map on “The house” page is loaded from OpenStreetMap, which passes your IP address to OpenStreetMap.',
+      'The fonts used are served from our own server; no data is sent to Google. The map on “The house” page is an image from our own server rather than an embedded map — no connection to a third party is made there either. The map data comes from OpenStreetMap.',
     rightsHeading: 'Your rights',
     rightsBody:
       'You have the right to access, rectification, erasure, restriction of processing, data portability and objection. Please write to the address above. You may also lodge a complaint with a supervisory authority — in Spain the Agencia Española de Protección de Datos (aepd.es).',

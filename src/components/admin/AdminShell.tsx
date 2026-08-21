@@ -3,7 +3,7 @@ import { Wordmark } from '@/components/ds';
 import { logout } from '@/app/(admin)/admin/actions';
 
 export function AdminShell({ active, children }: {
-  active: 'karte' | 'stimmen' | 'texte';
+  active: 'karte' | 'hinweise' | 'stimmen' | 'texte';
   children: React.ReactNode;
 }) {
   return (
@@ -16,6 +16,7 @@ export function AdminShell({ active, children }: {
 
           <nav className="lr-admin-nav">
             <Link href="/admin" aria-current={active === 'karte' ? 'page' : undefined}>Karte</Link>
+            <Link href="/admin/hinweise" aria-current={active === 'hinweise' ? 'page' : undefined}>Hinweise</Link>
             <Link href="/admin/stimmen" aria-current={active === 'stimmen' ? 'page' : undefined}>Gästestimmen</Link>
             <Link href="/admin/texte" aria-current={active === 'texte' ? 'page' : undefined}>Seitentexte</Link>
             <Link href="/de" target="_blank" rel="noreferrer">Website ansehen</Link>

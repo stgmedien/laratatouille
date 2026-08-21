@@ -163,6 +163,12 @@ sie bleiben als Quellmaterial im Projekt liegen.
 bleibt eine Übersetzung leer, zeigt die Website dort den deutschen Text. In der Übersicht steht
 bei unvollständigen Einträgen „Übersetzung fehlt“.
 
+**Hinweise** — ein Banner über der Website, für eine Schließung oder geänderte Zeiten. Mit
+„Anzeigen ab“ und „Anzeigen bis“ erscheint und verschwindet er von allein; den Sommerurlaub
+könnt ihr also Wochen im Voraus eintragen und danach vergessen. Ohne Datum läuft der Hinweis,
+bis ihr das Häkchen entfernt. Angezeigt wird immer nur der oberste Hinweis, der gerade läuft.
+Die Daten werden in spanischer Zeit ausgewertet.
+
 **Gästestimmen** — kurze Zitate aus öffentlichen Bewertungen, mit Namen und Quelle. Ein Zitat
 ist ein Zitat: Es steht in der Sprache, in der es geschrieben wurde, und wird auf allen drei
 Sprachfassungen unverändert gezeigt. Übersetzen und den Namen darunter stehen lassen wäre nicht
@@ -223,7 +229,9 @@ src/
     house.ts               Adresse, Zeiten, Kontakt — eine Quelle für alles
     auth.ts mail.ts seo.ts
   middleware.ts            Sprachweiche und Schutz von /admin
-scripts/db-setup.mjs       Tabellen anlegen und Beispielkarte einspielen
+scripts/
+  db-setup.mjs           Tabellen anlegen und Startinhalte einspielen
+  build-map.mjs          Lageplan aus OpenStreetMap-Kacheln bauen
 ```
 
 **Texte** stehen in `src/lib/i18n/dictionaries/` — eine Datei je Sprache, gleiche Struktur.
@@ -233,6 +241,13 @@ Wer dort ein Feld ergänzt, bekommt vom Typsystem gesagt, wo es in den anderen b
 `src/lib/house.ts` und werden von Fußzeile, Kontaktblock, Reservierungsformular,
 Reservierungsmail und den strukturierten Daten für Google gelesen. Wer dort die Zeiten ändert,
 ändert sie überall.
+
+**Lageplan**: `public/images/lage.jpg` ist ein festes Bild, kein eingebetteter Kartendienst.
+Damit lädt die Seite schneller, der Plan ist immer da, und es geht keine Anfrage eines Besuchers
+an einen Dritten — was die Datenschutzerklärung entsprechend kurz hält. Der Marker sitzt in der
+Bildmitte, weil das Bild auf `HOUSE.geo` zentriert gebaut wird. Zieht das Restaurant um, ändert
+man die Koordinaten in `src/lib/house.ts` **und** in `scripts/build-map.mjs` und lässt
+`npm run build:map` laufen.
 
 **Design System**: Farben, Typografie, Abstände und Bewegungen kommen unverändert aus
 `Design System/tokens/` und liegen als Kopie in `src/styles/tokens/`. Die Komponenten in
@@ -253,7 +268,8 @@ Anfrage an Google.
 | `npm run lint` | ESLint |
 | `npm run typecheck` | TypeScript ohne Ausgabe |
 | `npm run db:setup` | Tabellen anlegen |
-| `npm run db:seed` | Tabellen anlegen und Beispielkarte einspielen |
+| `npm run db:seed` | Tabellen anlegen und Startinhalte einspielen |
+| `npm run build:map` | Lageplan neu bauen — nur nötig, wenn sich die Adresse ändert |
 
 ---
 

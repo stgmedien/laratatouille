@@ -43,6 +43,14 @@ export const HOUSE = {
   lunchTimes: ['13:00', '13:30', '14:00'],
   dinnerTimes: ['19:00', '19:30', '20:00', '20:30', '21:00'],
 
+  /**
+   * Position of the restaurant as it is recorded in OpenStreetMap
+   * (amenity=restaurant, Carrer Major). Feeds the map on the house page and
+   * the structured data — note the negative longitude: Sanet y Negrals lies
+   * just west of the Greenwich meridian.
+   */
+  geo: { lat: 38.8196763, lon: -0.0344736 },
+
   mapsUrl: 'https://www.google.com/maps/search/?api=1&query=La+Ratatouille,+Calle+Mayor+14,+03769+Sanet+y+Negrals,+Alicante',
   /** Where the guest reviews quoted on the site come from. */
   reviewsUrl: 'https://www.google.com/maps/search/?api=1&query=La+Ratatouille+Sanet+y+Negrals',
@@ -54,3 +62,4 @@ export const ADDRESS_LINES = [
 ];
 
 export const RESERVATION_TIMES = [...HOUSE.lunchTimes, ...HOUSE.dinnerTimes];
+

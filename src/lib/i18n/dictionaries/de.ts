@@ -141,6 +141,7 @@ export const de = {
       phone: 'Telefon',
       email: 'E-Mail',
       directions: 'Route in Google Maps',
+      mapAlt: 'Lageplan von Sanet y Negrals mit La Ratatouille in der Calle Mayor',
       cta: 'Tisch reservieren',
     },
   },
@@ -246,9 +247,9 @@ export const de = {
     cookiesHeading: 'Cookies und Tracking',
     cookiesBody:
       'Diese Website setzt keine Analyse- oder Marketing-Cookies. Ein technisches Cookie wird nur im geschützten Verwaltungsbereich verwendet und ist für Besucherinnen und Besucher der öffentlichen Seiten nicht relevant. Ihre Sprachwahl wird über die Adresse der Seite abgebildet, nicht über ein Cookie.',
-    fontsHeading: 'Schriften und Karte',
+    fontsHeading: 'Schriften und Lageplan',
     fontsBody:
-      'Die verwendeten Schriften werden von unserem eigenen Server ausgeliefert; es werden keine Daten an Google übertragen. Der Lageplan auf der Seite „Das Haus“ wird von OpenStreetMap geladen, dabei wird Ihre IP-Adresse an OpenStreetMap übermittelt.',
+      'Die verwendeten Schriften werden von unserem eigenen Server ausgeliefert; es werden keine Daten an Google übertragen. Der Lageplan auf der Seite „Das Haus“ ist ein Bild von unserem eigenen Server, keine eingebettete Karte — auch dabei entsteht keine Verbindung zu Dritten. Die Kartendaten stammen von OpenStreetMap.',
     rightsHeading: 'Ihre Rechte',
     rightsBody:
       'Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch. Wenden Sie sich dafür an die oben genannte Adresse. Außerdem können Sie sich bei einer Aufsichtsbehörde beschweren, in Spanien bei der Agencia Española de Protección de Datos (aepd.es).',
