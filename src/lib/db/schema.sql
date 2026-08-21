@@ -53,12 +53,6 @@ CREATE TABLE IF NOT EXISTS menu_settings (
   intro_de           TEXT NOT NULL DEFAULT '',
   intro_es           TEXT NOT NULL DEFAULT '',
   intro_en           TEXT NOT NULL DEFAULT '',
-  set_menu_title_de  TEXT NOT NULL DEFAULT '',
-  set_menu_title_es  TEXT NOT NULL DEFAULT '',
-  set_menu_title_en  TEXT NOT NULL DEFAULT '',
-  set_menu_body_de   TEXT NOT NULL DEFAULT '',
-  set_menu_body_es   TEXT NOT NULL DEFAULT '',
-  set_menu_body_en   TEXT NOT NULL DEFAULT '',
   updated_at         TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
@@ -71,7 +65,11 @@ CREATE TABLE IF NOT EXISTS reviews (
   id            SERIAL PRIMARY KEY,
   sort_order    INTEGER     NOT NULL DEFAULT 0,
   is_published  BOOLEAN     NOT NULL DEFAULT TRUE,
-  quote         TEXT        NOT NULL,
+  quote_de      TEXT        NOT NULL DEFAULT '',
+  quote_es      TEXT        NOT NULL DEFAULT '',
+  quote_en      TEXT        NOT NULL DEFAULT '',
+  -- Sprache, in der der Gast geschrieben hat; alles andere ist Übersetzung.
+  original_lang TEXT        NOT NULL DEFAULT 'de',
   author        TEXT        NOT NULL DEFAULT '',
   source        TEXT        NOT NULL DEFAULT '',
   created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -93,3 +91,21 @@ CREATE TABLE IF NOT EXISTS announcements (
   created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+-- Nachträgliche Anpassungen für bereits bestehende Datenbanken. Alle Schritte
+-- sind wiederholbar; auf einer frisch angelegten Datenbank tun sie nichts.
+ALTER TABLE menu_settings
+  DROP COLUMN IF EXISTS set_menu_title_de, DROP COLUMN IF EXISTS set_menu_title_es,
+  DROP COLUMN IF EXISTS set_menu_title_en, DROP COLUMN IF EXISTS set_menu_body_de,
+  DROP COLUMN IF EXISTS set_menu_body_es,  DROP COLUMN IF EXISTS set_menu_body_en;
+
+ALTER TABLE reviews
+  ADD COLUMN IF NOT EXISTS quote_de      TEXT NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS quote_es      TEXT NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS quote_en      TEXT NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS original_lang TEXT NOT NULL DEFAULT 'de';
+
+-- Die frühere einsprachige Spalte entfällt. Ihr Inhalt war Startinhalt, der
+-- mit "npm run db:seed -- --force" ohnehin durch die übersetzte Fassung
+-- ersetzt wird.
+ALTER TABLE reviews DROP COLUMN IF EXISTS quote;

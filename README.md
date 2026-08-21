@@ -169,14 +169,13 @@ könnt ihr also Wochen im Voraus eintragen und danach vergessen. Ohne Datum läu
 bis ihr das Häkchen entfernt. Angezeigt wird immer nur der oberste Hinweis, der gerade läuft.
 Die Daten werden in spanischer Zeit ausgewertet.
 
-**Gästestimmen** — kurze Zitate aus öffentlichen Bewertungen, mit Namen und Quelle. Ein Zitat
-ist ein Zitat: Es steht in der Sprache, in der es geschrieben wurde, und wird auf allen drei
-Sprachfassungen unverändert gezeigt. Übersetzen und den Namen darunter stehen lassen wäre nicht
-ehrlich. Die Startseite zeigt die ersten drei, die Seite „Das Haus“ die erste. Ohne sichtbare
-Stimme verschwindet der Abschnitt.
+**Gästestimmen** — kurze Zitate aus öffentlichen Bewertungen, mit Namen und Quelle. Jede Stimme
+hat wie ein Gericht drei Sprachfelder, dazu die Angabe, in welcher Sprache der Gast tatsächlich
+geschrieben hat. Wird eine Übersetzung angezeigt, schreibt die Website „übersetzt“ hinter Namen
+und Quelle — so steht niemandem etwas im Mund, das er nicht gesagt hat. Die Startseite zeigt die
+ersten drei, die Seite „Das Haus“ die erste. Ohne sichtbare Stimme verschwindet der Abschnitt.
 
-**Seitentexte** — die freien Texte über der Karte und der Menüblock darunter. Bleiben Titel und
-Text des Menüblocks leer, verschwindet der Block von der Seite.
+**Seitentexte** — die freien Texte über der Karte.
 
 Änderungen sind sofort auf der Website sichtbar.
 
@@ -184,12 +183,10 @@ Text des Menüblocks leer, verschwindet der Block von der Seite.
 
 ## Vor dem Livegang
 
-- [ ] Karte gegenprüfen: Sie enthält Entradas und Carne & Pescado nach der aktuellen Vorlage.
-      Desserts und Weine sind noch nicht hinterlegt — bei Bedarf im Backend als Kategorie anlegen
+- [ ] Karte gegenprüfen: Vorspeisen, Fleisch & Fisch und Desserts sind hinterlegt.
+      Weine fehlen noch — bei Bedarf im Backend als Kategorie anlegen
 - [ ] Gästestimmen mit dem eigenen Profil abgleichen und löschen, was nicht veröffentlicht
       werden soll
-- [ ] Im Impressum die vollständige Firmierung und die Steuernummer (NIF/CIF) eintragen
-      (`src/lib/i18n/dictionaries/*.ts`, Abschnitt `legal`)
 - [ ] Einwilligung der auf `gastraum.jpg` abgebildeten Gäste zur Veröffentlichung sichern
 - [ ] `NEXT_PUBLIC_SITE_URL` auf die echte Domain setzen
 - [ ] Eine Testreservierung abschicken und prüfen, ob die Mail ankommt
@@ -241,6 +238,11 @@ Wer dort ein Feld ergänzt, bekommt vom Typsystem gesagt, wo es in den anderen b
 `src/lib/house.ts` und werden von Fußzeile, Kontaktblock, Reservierungsformular,
 Reservierungsmail und den strukturierten Daten für Google gelesen. Wer dort die Zeiten ändert,
 ändert sie überall.
+
+**Logo**: liegt zweimal in `public/images/` — `logo.png` für helle Flächen und `logo-hell.png`
+für Tannengrün, bei dem Wortmarke und Zweig auf Leinen und Salbei umgefärbt sind. Im Seitenkopf
+liegen beide übereinander und blenden ineinander über, damit beim Scrollen nichts aufblitzt.
+Die Quelldatei liegt unter `Bilder/`.
 
 **Lageplan**: `public/images/lage.jpg` ist ein festes Bild, kein eingebetteter Kartendienst.
 Damit lädt die Seite schneller, der Plan ist immer da, und es geht keine Anfrage eines Besuchers

@@ -1,12 +1,14 @@
 import { Rule } from '@/components/ds';
-import type { ReviewRow } from '@/lib/db/types';
+import type { LocalisedReview } from '@/lib/db/types';
 
 /**
  * Guest quotes stay in the language they were written in — attributing a
  * translation to a named person would put words in their mouth. Kept short:
  * an excerpt with the author and the platform it came from.
  */
-export function ReviewGrid({ reviews }: { reviews: ReviewRow[] }) {
+export function ReviewGrid({ reviews, translatedLabel }: {
+  reviews: LocalisedReview[]; translatedLabel: string;
+}) {
   return (
     <div className="lr-grid-3" style={{ alignItems: 'start' }}>
       {reviews.map((review) => (
@@ -16,7 +18,7 @@ export function ReviewGrid({ reviews }: { reviews: ReviewRow[] }) {
         >
           <Rule variant="short" />
           <blockquote
-            lang="en"
+            lang={review.lang}
             style={{
               margin: 0,
               font: 'var(--fw-regular) var(--fs-h3)/1.4 var(--font-display)',
@@ -40,6 +42,7 @@ export function ReviewGrid({ reviews }: { reviews: ReviewRow[] }) {
                 {review.source}
               </>
             )}
+            {review.translated && <>{' · '}{translatedLabel}</>}
           </figcaption>
         </figure>
       ))}

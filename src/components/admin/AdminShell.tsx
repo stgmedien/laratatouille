@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Wordmark } from '@/components/ds';
+import { Brand } from '@/components/site/Brand';
 import { logout } from '@/app/(admin)/admin/actions';
 
 export function AdminShell({ active, children }: {
@@ -11,7 +11,7 @@ export function AdminShell({ active, children }: {
       <header className="lr-admin-header">
         <div className="lr-container lr-admin-header__inner">
           <Link href="/admin" style={{ border: 'none', display: 'flex' }} aria-label="Verwaltung">
-            <Wordmark size={18} tone="inverse" showSubtitle={false} />
+            <Brand tone="inverse" width={148} />
           </Link>
 
           <nav className="lr-admin-nav">

@@ -22,14 +22,24 @@ export function alternatesFor(page: PageKey, locale: Locale): Metadata['alternat
   return { canonical: absolute(pathFor(page, locale)), languages };
 }
 
-export function openGraphFor(locale: Locale, title: string, description: string, image = '/images/gastraum.jpg') {
+/** Kantenlängen der Vorschaubilder, damit die Angaben zum Bild passen. */
+const IMAGE_SIZES: Record<string, { width: number; height: number }> = {
+  '/images/hero.jpg': { width: 1448, height: 1086 },
+  '/images/gastraum.jpg': { width: 2200, height: 1650 },
+  '/images/kueche.jpg': { width: 2200, height: 1464 },
+  '/images/carpaccio.jpg': { width: 2200, height: 1467 },
+  '/images/rinderfilet.jpg': { width: 2200, height: 1466 },
+};
+
+export function openGraphFor(locale: Locale, title: string, description: string, image = '/images/hero.jpg') {
+  const size = IMAGE_SIZES[image] ?? { width: 1200, height: 630 };
   return {
     title,
     description,
     siteName: HOUSE.name,
     locale,
     type: 'website' as const,
-    images: [{ url: absolute(image), width: 2200, height: 1650, alt: HOUSE.name }],
+    images: [{ url: absolute(image), ...size, alt: HOUSE.name }],
   };
 }
 
@@ -43,7 +53,7 @@ export function restaurantJsonLd(locale: Locale, description: string) {
     url: absolute(pathFor('home', locale)),
     telephone: HOUSE.phone,
     email: HOUSE.email,
-    image: absolute('/images/gastraum.jpg'),
+    image: absolute('/images/hero.jpg'),
     servesCuisine: 'Mediterranean',
     priceRange: '€€',
     hasMenu: absolute(pathFor('menu', locale)),

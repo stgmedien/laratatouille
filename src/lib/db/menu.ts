@@ -5,7 +5,8 @@ import { SEED_CATEGORIES, SEED_REVIEWS, SEED_SETTINGS } from './seed-data';
 import {
   localiseDish, pick,
   type CategoryRow, type DishRow, type LocalisedCategory, type LocalisedDish,
-  type AnnouncementRow, type LocalisedMenuSettings, type MenuSettingsRow, type ReviewRow,
+  type AnnouncementRow, type LocalisedMenuSettings, type LocalisedReview,
+  type MenuSettingsRow, type ReviewRow,
 } from './types';
 
 /* -------------------------------------------------------------------------
@@ -54,7 +55,7 @@ const readReviews = cache(async (): Promise<ReviewRow[]> => {
   if (!hasDatabase) return SEED_REVIEWS.map((r, i) => ({ ...r, id: i + 1 }));
   const sql = db();
   return (await sql`
-    SELECT id, sort_order, is_published, quote, author, source
+    SELECT id, sort_order, is_published, quote_de, quote_es, quote_en, original_lang, author, source
     FROM reviews
     ORDER BY sort_order, id
   `) as ReviewRow[];
@@ -101,18 +102,34 @@ export async function getMenuSettings(locale: Locale): Promise<LocalisedMenuSett
     eyebrow: pick(row, 'eyebrow', locale),
     title: pick(row, 'title', locale),
     intro: pick(row, 'intro', locale),
-    setMenuTitle: pick(row, 'set_menu_title', locale),
-    setMenuBody: pick(row, 'set_menu_body', locale),
   };
 }
 
 /**
- * Published guest reviews, newest ordering first. Quotes keep the language the
- * guest wrote them in, so there is nothing to localise here.
+ * Published guest reviews in the reader's language. A quote is someone's own
+ * words, so where a translation is shown the caption says so rather than
+ * passing it off as what they wrote.
  */
-export async function getReviews(limit?: number): Promise<ReviewRow[]> {
-  const rows = (await readReviews()).filter((r) => r.is_published && r.quote.trim());
-  return typeof limit === 'number' ? rows.slice(0, limit) : rows;
+export async function getReviews(locale: Locale, limit?: number): Promise<LocalisedReview[]> {
+  const rows = (await readReviews()).filter((r) => r.is_published);
+
+  const localised = rows
+    .map((row) => {
+      const quote = pick(row, 'quote', locale);
+      // pick() falls back to German; work out which language actually landed.
+      const lang = row[`quote_${locale}` as keyof ReviewRow] ? locale : 'de';
+      return {
+        id: row.id,
+        quote,
+        author: row.author,
+        source: row.source,
+        translated: lang !== row.original_lang,
+        lang,
+      };
+    })
+    .filter((r) => r.quote);
+
+  return typeof limit === 'number' ? localised.slice(0, limit) : localised;
 }
 
 /**

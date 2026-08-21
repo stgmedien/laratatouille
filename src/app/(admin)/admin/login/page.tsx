@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { Wordmark } from '@/components/ds';
+import { Brand } from '@/components/site/Brand';
 import { LoginForm } from '@/components/admin/LoginForm';
 
 export default function LoginPage() {
@@ -10,7 +10,7 @@ export default function LoginPage() {
     }}>
       <div style={{ width: '100%', maxWidth: 400, display: 'flex', flexDirection: 'column', gap: 'var(--space-32)' }}>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <Wordmark size={26} />
+          <Brand width={220} priority />
         </div>
         <div className="lr-admin-card">
           <h1 style={{

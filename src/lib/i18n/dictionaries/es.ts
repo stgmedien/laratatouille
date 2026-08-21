@@ -14,7 +14,7 @@ export const es: Dictionary = {
     },
     house: {
       title: 'La casa',
-      description: 'Timo Kaiser y Gesine Janasik, formados en la Selva Negra, antes al frente del Ikarus en Dénia. Cómo trabajamos y dónde encontrarnos.',
+      description: 'Timo Kaiser y Gesine Janasik, un matrimonio de hosteleros con formación clásica. Cómo trabajamos y dónde encontrarnos.',
     },
     reserve: {
       title: 'Reservar',
@@ -48,9 +48,9 @@ export const es: Dictionary = {
     },
     house: {
       eyebrow: 'La casa',
-      title: 'Formados en la Selva Negra, cocinando en el Mediterráneo',
-      intro: 'Timo Kaiser y Gesine Janasik llevan la casa de la Calle Mayor.',
-      body: 'Ambos se formaron en establecimientos de prestigio de la Selva Negra y siguieron puliendo el oficio en Alemania, Austria y España. Antes de La Ratatouille estuvieron al frente del Ikarus en Dénia.',
+      title: 'Un matrimonio de hosteleros en el Mediterráneo',
+      intro: 'Timo Kaiser y Gesine Janasik llevan juntos la casa de la Calle Mayor.',
+      body: 'Ambos se formaron en establecimientos de prestigio de la Selva Negra y pulieron el oficio durante años en Alemania, Austria y España. Él está en los fogones, ella lleva el comedor.',
       cta: 'Sobre nosotros',
       imageAlt: 'Solomillo de ternera en la sartén, en el pase de la cocina',
     },
@@ -66,6 +66,7 @@ export const es: Dictionary = {
       title: 'Lo que escriben nuestros clientes',
       intro: 'Extractos de las valoraciones de nuestros clientes.',
       cta: 'Todas las opiniones en Google',
+      translated: 'traducido',
     },
     info: {
       eyebrow: 'En la casa',
@@ -104,18 +105,33 @@ export const es: Dictionary = {
   house: {
     hero: {
       eyebrow: 'La casa',
-      title: 'Dos anfitriones, una escuela clásica',
+      title: 'Un matrimonio, una escuela clásica',
       sub: 'Una casa de pueblo en la Calle Mayor, una cocina entre la bullabesa y el ibérico.',
       imageAlt: 'El pase de la cocina de La Ratatouille durante el servicio',
     },
     story: {
       eyebrow: 'Los anfitriones',
-      title: 'Timo Kaiser y Gesine Janasik',
+      title: 'Años en la misma casa',
       body1:
-        'Ambos se formaron en establecimientos de prestigio de la Selva Negra y después profundizaron en su oficio en Alemania, Austria y España.',
+        'Timo Kaiser y Gesine Janasik son un matrimonio de hosteleros. Ambos se formaron en establecimientos de prestigio de la Selva Negra y después profundizaron durante años en su oficio en Alemania, Austria y España.',
       body2:
-        'Antes de La Ratatouille estuvieron al frente del Ikarus en Dénia. Hoy Timo Kaiser está en los fogones y Gesine Janasik lleva el comedor — en alemán, español, inglés y francés.',
+        'Que los dos sean del oficio se nota por la noche: lo que sale de la cocina y lo que ocurre en el comedor llevan la misma firma.',
       imageAlt: 'Clientes cenando en el comedor',
+    },
+    hosts: {
+      eyebrow: 'Cocina y comedor',
+      title: 'Los dos, del oficio',
+      intro: 'Un matrimonio de hosteleros que no se reparte el trabajo, sino que lo comparte.',
+      chef: {
+        name: 'Timo Kaiser',
+        role: 'Cocina',
+        body: 'Responsable de la carta y de la compra; cada noche está él mismo en los fogones.',
+      },
+      host: {
+        name: 'Gesine Janasik',
+        role: 'Comedor',
+        body: 'Recibe a los clientes, aconseja con el vino y sigue toda la velada de cerca.',
+      },
     },
     principles: {
       kitchen: {
@@ -221,7 +237,6 @@ export const es: Dictionary = {
     title: 'Aviso legal',
     intro: 'Datos facilitados en cumplimiento de la Ley 34/2002 de servicios de la sociedad de la información (LSSI-CE).',
     operatorHeading: 'Titular',
-    operatorNote: 'Complete aquí la denominación completa y el NIF/CIF.',
     contactHeading: 'Contacto',
     responsibleHeading: 'Responsable de contenidos',
     disputeHeading: 'Resolución de litigios',

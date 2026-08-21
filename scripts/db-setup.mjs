@@ -34,9 +34,12 @@ async function main() {
   const schema = await readFile(join(dbDir, 'schema.sql'), 'utf8');
 
   // The HTTP driver runs one statement per request, so split the file.
+  // Kommentare müssen vor dem Zerlegen fallen: steht in einem Kommentar ein
+  // Semikolon, würde sonst mitten in einer Anweisung getrennt.
   const statements = schema
+    .replace(/^\s*--.*$/gm, '')
     .split(';')
-    .map((s) => s.replace(/^\s*--.*$/gm, '').trim())
+    .map((s) => s.trim())
     .filter(Boolean);
 
   for (const statement of statements) {
@@ -94,8 +97,6 @@ async function main() {
       eyebrow_de = ${settings.eyebrow_de}, eyebrow_es = ${settings.eyebrow_es}, eyebrow_en = ${settings.eyebrow_en},
       title_de = ${settings.title_de}, title_es = ${settings.title_es}, title_en = ${settings.title_en},
       intro_de = ${settings.intro_de}, intro_es = ${settings.intro_es}, intro_en = ${settings.intro_en},
-      set_menu_title_de = ${settings.set_menu_title_de}, set_menu_title_es = ${settings.set_menu_title_es}, set_menu_title_en = ${settings.set_menu_title_en},
-      set_menu_body_de = ${settings.set_menu_body_de}, set_menu_body_es = ${settings.set_menu_body_es}, set_menu_body_en = ${settings.set_menu_body_en},
       updated_at = NOW()
     WHERE id = 1
   `;
@@ -105,8 +106,13 @@ async function main() {
   if (reviewCount === 0) {
     for (const r of reviews) {
       await sql`
-        INSERT INTO reviews (sort_order, is_published, quote, author, source)
-        VALUES (${r.sort_order}, ${r.is_published}, ${r.quote}, ${r.author}, ${r.source})
+        INSERT INTO reviews (
+          sort_order, is_published, quote_de, quote_es, quote_en, original_lang, author, source
+        ) VALUES (
+          ${r.sort_order}, ${r.is_published},
+          ${r.quote_de}, ${r.quote_es}, ${r.quote_en},
+          ${r.original_lang}, ${r.author}, ${r.source}
+        )
       `;
     }
     console.log(`  ${reviews.length} Gästestimmen angelegt.`);

@@ -121,7 +121,16 @@ body {
 .lr-hero__scrim {
   position: absolute;
   inset: 0;
-  background: var(--image-scrim);
+  /* Der Verlauf des Design Systems dunkelt von unten ab. Oben steht aber der
+     durchsichtige Kopf mit dem Logo, deshalb kommt dort eine zweite, deutlich
+     schwächere Lage dazu — sonst verliert sich der Olivenzweig in einer hellen
+     Wand im Bild. */
+  background:
+    linear-gradient(to bottom,
+      color-mix(in oklab, var(--pine-900) 46%, transparent) 0%,
+      color-mix(in oklab, var(--pine-900) 16%, transparent) 45%,
+      transparent 100%) top / 100% 200px no-repeat,
+    var(--image-scrim);
   pointer-events: none;
 }
 .lr-hero__body {
@@ -160,6 +169,11 @@ body {
 }
 
 .lr-nav { display: flex; align-items: center; gap: clamp(16px, 2.4vw, 32px); }
+
+/* Das Logo skaliert mit dem Kopf; die Bilddatei bleibt dieselbe. */
+.lr-brand { display: block; width: clamp(124px, 34vw, 168px); }
+.lr-brand img { width: 100%; height: auto; display: block; }
+.lr-brand--footer { width: clamp(180px, 52vw, 240px); }
 .lr-nav__link {
   border: 0;
   padding-bottom: 2px;

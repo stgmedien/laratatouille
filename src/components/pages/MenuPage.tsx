@@ -1,10 +1,10 @@
 import Image from 'next/image';
-import { Button, MenuItem, Notice, Rule, SectionHeading, Tag } from '@/components/ds';
+import { MenuItem, Notice, Rule, SectionHeading, Tag } from '@/components/ds';
 import { PrintButton } from '@/components/site/PrintButton';
 import { Section } from '@/components/site/Section';
 import { getMenu, getMenuSettings } from '@/lib/db/menu';
 import { DISH_TAGS, type DishTag } from '@/lib/db/types';
-import { pathFor, type Locale } from '@/lib/i18n/config';
+import type { Locale } from '@/lib/i18n/config';
 import type { Dictionary } from '@/lib/i18n';
 import { tagsFor } from './tags';
 
@@ -120,21 +120,6 @@ export async function MenuPage({ locale, dict }: { locale: Locale; dict: Diction
         )}
       </Section>
 
-      {(settings.setMenuTitle || settings.setMenuBody) && (
-        <Section tone="sunken">
-          <div className="lr-menu-column" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-24)' }}>
-            <SectionHeading
-              title={settings.setMenuTitle}
-              intro={settings.setMenuBody}
-              rule={false}
-            />
-            <Rule variant="ornament" />
-            <div className="lr-no-print">
-              <Button href={pathFor('reserve', locale)}>{t.reserveCta}</Button>
-            </div>
-          </div>
-        </Section>
-      )}
     </>
   );
 }

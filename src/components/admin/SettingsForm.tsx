@@ -52,31 +52,6 @@ export function SettingsForm({ settings, saved }: { settings: MenuSettingsRow; s
         />
       </div>
 
-      <div className="lr-admin-card">
-        <h2 style={{ font: 'var(--type-subhead)', color: 'var(--text-heading)', margin: '0 0 var(--space-8)' }}>
-          Menüblock unter der Karte
-        </h2>
-        <p style={{ font: 'var(--type-body-sm)', fontFamily: 'var(--font-body)', fontSize: 'var(--fs-body-sm)', color: 'var(--text-muted)', margin: '0 0 var(--space-24)' }}>
-          Für das feste Menü. Bleiben beide Felder leer, verschwindet der Block von der Seite.
-        </p>
-        <LanguageFields
-          render={(locale) => (
-            <>
-              <Input
-                id={`set_menu_title_${locale}`} name={`set_menu_title_${locale}`}
-                label={`Titel (${localeNames[locale]})`} placeholder="Mittelmeer-Menü, 6 Gänge"
-                defaultValue={s[`set_menu_title_${locale}`] ?? ''}
-              />
-              <Textarea
-                id={`set_menu_body_${locale}`} name={`set_menu_body_${locale}`}
-                label={`Text (${localeNames[locale]})`} rows={3}
-                placeholder="Donnerstags um 19:30, für den ganzen Tisch. 68 € pro Person."
-                defaultValue={s[`set_menu_body_${locale}`] ?? ''}
-              />
-            </>
-          )}
-        />
-      </div>
 
       <div><SubmitButton /></div>
     </form>

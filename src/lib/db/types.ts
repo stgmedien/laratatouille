@@ -39,9 +39,25 @@ export interface ReviewRow {
   id: number;
   sort_order: number;
   is_published: boolean;
+  quote_de: string;
+  quote_es: string;
+  quote_en: string;
+  /** The language the guest actually wrote in; the rest are translations. */
+  original_lang: string;
+  author: string;
+  source: string;
+}
+
+/** A review rendered in one language, with a note when it was translated. */
+export interface LocalisedReview {
+  id: number;
   quote: string;
   author: string;
   source: string;
+  /** True when the shown text is not what the guest wrote. */
+  translated: boolean;
+  /** Language of the text actually rendered — for the lang attribute. */
+  lang: string;
 }
 
 /**
@@ -65,8 +81,6 @@ export interface MenuSettingsRow {
   eyebrow_de: string; eyebrow_es: string; eyebrow_en: string;
   title_de: string; title_es: string; title_en: string;
   intro_de: string; intro_es: string; intro_en: string;
-  set_menu_title_de: string; set_menu_title_es: string; set_menu_title_en: string;
-  set_menu_body_de: string; set_menu_body_es: string; set_menu_body_en: string;
 }
 
 /** One dish rendered in a single language. */
@@ -92,8 +106,6 @@ export interface LocalisedMenuSettings {
   eyebrow: string;
   title: string;
   intro: string;
-  setMenuTitle: string;
-  setMenuBody: string;
 }
 
 /**

@@ -11,13 +11,13 @@ import type { Dictionary } from '@/lib/i18n';
 import { tagsFor } from './tags';
 
 export async function HomePage({ locale, dict }: { locale: Locale; dict: Dictionary }) {
-  const [highlights, reviews] = await Promise.all([getHighlights(locale, 4), getReviews(3)]);
+  const [highlights, reviews] = await Promise.all([getHighlights(locale, 4), getReviews(locale, 3)]);
   const t = dict.home;
 
   return (
     <>
       <Hero
-        src="/images/gastraum.jpg"
+        src="/images/hero.jpg"
         alt={t.hero.imageAlt}
         eyebrow={t.hero.eyebrow}
         title={t.hero.title}
@@ -83,7 +83,7 @@ export async function HomePage({ locale, dict }: { locale: Locale; dict: Diction
             align="center" eyebrow={t.reviews.eyebrow} title={t.reviews.title} intro={t.reviews.intro}
             style={{ marginBottom: 'var(--space-56)' }}
           />
-          <ReviewGrid reviews={reviews} />
+          <ReviewGrid reviews={reviews} translatedLabel={t.reviews.translated} />
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'var(--space-40)' }}>
             <a href={HOUSE.reviewsUrl} target="_blank" rel="noreferrer noopener" style={{ font: 'var(--type-body-sm)' }}>
               {t.reviews.cta}

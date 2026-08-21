@@ -14,7 +14,7 @@ export const en: Dictionary = {
     },
     house: {
       title: 'The house',
-      description: 'Timo Kaiser and Gesine Janasik, trained in the Black Forest, formerly of Ikarus in Dénia. How we work and where to find us.',
+      description: 'Timo Kaiser and Gesine Janasik, a restaurateur couple with classical training. How we work and where to find us.',
     },
     reserve: {
       title: 'Book a table',
@@ -48,9 +48,9 @@ export const en: Dictionary = {
     },
     house: {
       eyebrow: 'The house',
-      title: 'Trained in the Black Forest, cooking on the Mediterranean',
-      intro: 'Timo Kaiser and Gesine Janasik run the house on Calle Mayor.',
-      body: 'Both trained in respected establishments in the Black Forest and went on to deepen the craft in Germany, Austria and Spain. Before La Ratatouille they ran the Ikarus in Dénia.',
+      title: 'A restaurateur couple on the Mediterranean',
+      intro: 'Timo Kaiser and Gesine Janasik run the house on Calle Mayor together.',
+      body: 'Both trained in respected establishments in the Black Forest and spent years deepening the craft in Germany, Austria and Spain. He is at the stove, she runs the dining room.',
       cta: 'About us',
       imageAlt: 'Beef fillet in the pan at the kitchen pass',
     },
@@ -66,6 +66,7 @@ export const en: Dictionary = {
       title: 'What our guests write',
       intro: 'Extracts from reviews left by our guests.',
       cta: 'All reviews on Google',
+      translated: 'translated',
     },
     info: {
       eyebrow: 'In the house',
@@ -104,18 +105,33 @@ export const en: Dictionary = {
   house: {
     hero: {
       eyebrow: 'The house',
-      title: 'Two hosts, one classical school',
+      title: 'A married couple, one classical school',
       sub: 'A village house on Calle Mayor, a kitchen between bouillabaisse and Ibérico.',
       imageAlt: 'The kitchen pass at La Ratatouille during service',
     },
     story: {
       eyebrow: 'The hosts',
-      title: 'Timo Kaiser and Gesine Janasik',
+      title: 'Years in the same house',
       body1:
-        'Both trained in respected establishments in the Black Forest and then deepened the craft in Germany, Austria and Spain.',
+        'Timo Kaiser and Gesine Janasik are a restaurateur couple. Both trained in respected establishments in the Black Forest and then spent years deepening the craft in Germany, Austria and Spain.',
       body2:
-        'Before La Ratatouille they ran the Ikarus in Dénia. Today Timo Kaiser is at the stove and Gesine Janasik runs the dining room — in German, Spanish, English and French.',
+        'That both are of the trade shows in the evening: what comes out of the kitchen and what happens in the dining room carry the same hand.',
       imageAlt: 'Guests having dinner in the dining room',
+    },
+    hosts: {
+      eyebrow: 'Kitchen and dining room',
+      title: 'Both of the trade',
+      intro: 'A restaurateur couple who do not divide the work between them, but share it.',
+      chef: {
+        name: 'Timo Kaiser',
+        role: 'Kitchen',
+        body: 'Responsible for the menu and the buying, and at the stove himself every evening.',
+      },
+      host: {
+        name: 'Gesine Janasik',
+        role: 'Dining room',
+        body: 'Welcomes the guests, advises on the wine and keeps an eye on the whole evening.',
+      },
     },
     principles: {
       kitchen: {
@@ -221,7 +237,6 @@ export const en: Dictionary = {
     title: 'Legal notice',
     intro: 'Information provided under the Spanish information society services act (Ley 34/2002, LSSI-CE).',
     operatorHeading: 'Operator',
-    operatorNote: 'Please enter the full legal name and the tax number (NIF/CIF) here.',
     contactHeading: 'Contact',
     responsibleHeading: 'Responsible for content',
     disputeHeading: 'Dispute resolution',

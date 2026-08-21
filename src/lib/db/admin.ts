@@ -195,14 +195,14 @@ export async function moveDish(id: number, direction: 'up' | 'down'): Promise<vo
 
 export async function listReviews(): Promise<ReviewRow[]> {
   return (await sql()`
-    SELECT id, sort_order, is_published, quote, author, source
+    SELECT id, sort_order, is_published, quote_de, quote_es, quote_en, original_lang, author, source
     FROM reviews ORDER BY sort_order, id
   `) as ReviewRow[];
 }
 
 export async function getReview(id: number): Promise<ReviewRow | null> {
   const rows = (await sql()`
-    SELECT id, sort_order, is_published, quote, author, source
+    SELECT id, sort_order, is_published, quote_de, quote_es, quote_en, original_lang, author, source
     FROM reviews WHERE id = ${id}
   `) as ReviewRow[];
   return rows[0] ?? null;
@@ -212,10 +212,12 @@ export type ReviewInput = Omit<ReviewRow, 'id' | 'sort_order'>;
 
 export async function createReview(data: ReviewInput): Promise<number> {
   const rows = (await sql()`
-    INSERT INTO reviews (sort_order, is_published, quote, author, source)
-    VALUES (
+    INSERT INTO reviews (
+      sort_order, is_published, quote_de, quote_es, quote_en, original_lang, author, source
+    ) VALUES (
       (SELECT COALESCE(MAX(sort_order), 0) + 1 FROM reviews),
-      ${data.is_published}, ${data.quote}, ${data.author}, ${data.source}
+      ${data.is_published}, ${data.quote_de}, ${data.quote_es}, ${data.quote_en},
+      ${data.original_lang}, ${data.author}, ${data.source}
     )
     RETURNING id
   `) as { id: number }[];
@@ -226,7 +228,9 @@ export async function updateReview(id: number, data: ReviewInput): Promise<void>
   await sql()`
     UPDATE reviews SET
       is_published = ${data.is_published},
-      quote = ${data.quote}, author = ${data.author}, source = ${data.source},
+      quote_de = ${data.quote_de}, quote_es = ${data.quote_es}, quote_en = ${data.quote_en},
+      original_lang = ${data.original_lang},
+      author = ${data.author}, source = ${data.source},
       updated_at = NOW()
     WHERE id = ${id}
   `;
@@ -344,8 +348,6 @@ export async function updateSettings(data: MenuSettingsRow): Promise<void> {
       eyebrow_de = ${data.eyebrow_de}, eyebrow_es = ${data.eyebrow_es}, eyebrow_en = ${data.eyebrow_en},
       title_de = ${data.title_de}, title_es = ${data.title_es}, title_en = ${data.title_en},
       intro_de = ${data.intro_de}, intro_es = ${data.intro_es}, intro_en = ${data.intro_en},
-      set_menu_title_de = ${data.set_menu_title_de}, set_menu_title_es = ${data.set_menu_title_es}, set_menu_title_en = ${data.set_menu_title_en},
-      set_menu_body_de = ${data.set_menu_body_de}, set_menu_body_es = ${data.set_menu_body_es}, set_menu_body_en = ${data.set_menu_body_en},
       updated_at = NOW()
     WHERE id = 1
   `;

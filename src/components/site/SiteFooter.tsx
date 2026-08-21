@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { InfoRow, Logo, Rule, Wordmark } from '@/components/ds';
+import { InfoRow, Rule } from '@/components/ds';
+import { Brand } from './Brand';
 import { ADDRESS_LINES, HOUSE } from '@/lib/house';
 import { pathFor, type Locale } from '@/lib/i18n/config';
 import type { Dictionary } from '@/lib/i18n';
@@ -19,8 +20,7 @@ export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary 
     >
       <div className="lr-container lr-footer-grid">
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-20)', alignItems: 'flex-start' }}>
-          <Logo size={56} tone="inverse" />
-          <Wordmark size={22} tone="inverse" subtitle={HOUSE.tagline} />
+          <Brand tone="inverse" width={240} className="lr-brand lr-brand--footer" />
           <p style={{ font: 'var(--type-body)', color: 'var(--text-on-inverse-muted)', margin: 0, maxWidth: '34ch' }}>
             {dict.footer.blurb}
           </p>

@@ -4,12 +4,13 @@ import { ADDRESS_LINES, HOUSE } from '@/lib/house';
 import type { Locale } from '@/lib/i18n/config';
 import type { Dictionary } from '@/lib/i18n';
 
-function Address() {
+function Address({ withTaxId = false }: { withTaxId?: boolean }) {
   return (
     <address>
-      {HOUSE.name}<br />
+      {HOUSE.legalName}<br />
       {ADDRESS_LINES[0]}<br />
       {ADDRESS_LINES[1]}, {HOUSE.countryName}<br />
+      {withTaxId && <>CIF: {HOUSE.taxId}<br /></>}
       <a href={`tel:${HOUSE.phoneHref}`}>{HOUSE.phone}</a><br />
       <a href={`mailto:${HOUSE.email}`}>{HOUSE.email}</a>
     </address>
@@ -23,8 +24,7 @@ export function LegalPage({ dict }: { locale: Locale; dict: Dictionary }) {
       <SectionHeading as="h1" title={t.title} intro={t.intro} />
       <div className="lr-prose" style={{ marginTop: 'var(--space-40)' }}>
         <h2>{t.operatorHeading}</h2>
-        <Address />
-        <p style={{ color: 'var(--text-faint)', fontStyle: 'italic' }}>{t.operatorNote}</p>
+        <Address withTaxId />
 
         <h2>{t.responsibleHeading}</h2>
         <Address />

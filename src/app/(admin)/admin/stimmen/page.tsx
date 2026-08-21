@@ -5,10 +5,23 @@ import { IconSubmit } from '@/components/admin/IconSubmit';
 import { requireSession } from '@/lib/admin-session';
 import { listReviews } from '@/lib/db/admin';
 import { hasDatabase } from '@/lib/db/client';
+import type { ReviewRow } from '@/lib/db/types';
+import { localeNames, locales, type Locale } from '@/lib/i18n/config';
 import { HOUSE } from '@/lib/house';
 import { removeReview, shiftReview } from '../actions';
 
 export const dynamic = 'force-dynamic';
+
+/** The wording the guest actually used, falling back to whatever is filled in. */
+function originalQuote(review: ReviewRow): string {
+  const row = review as unknown as Record<string, string>;
+  return row[`quote_${review.original_lang}`] || row.quote_de || row.quote_es || row.quote_en || '';
+}
+
+function missingLanguages(review: ReviewRow): string[] {
+  const row = review as unknown as Record<string, string>;
+  return locales.filter((l) => !row[`quote_${l}`]?.trim()).map((l) => l.toUpperCase());
+}
 
 export default async function ReviewsPage() {
   await requireSession();
@@ -59,6 +72,7 @@ export default async function ReviewsPage() {
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 'var(--space-12)', flexWrap: 'wrap' }}>
                 <span style={{ font: 'var(--type-eyebrow)', letterSpacing: 'var(--ls-eyebrow)', textTransform: 'uppercase', color: 'var(--text-faint)' }}>
                   {review.author}{review.source ? ` · ${review.source}` : ''}
+                  {` · Original ${localeNames[review.original_lang as Locale] ?? review.original_lang}`}
                 </span>
                 {!review.is_published && <Tag>Ausgeblendet</Tag>}
                 {i < 3 && review.is_published && <Tag tone="gold">Startseite</Tag>}
@@ -67,8 +81,13 @@ export default async function ReviewsPage() {
                 font: 'var(--fw-regular) var(--fs-h4)/1.45 var(--font-display)',
                 color: 'var(--text-heading)', margin: 'var(--space-4) 0 0', maxWidth: '58ch',
               }}>
-                {`“${review.quote}”`}
+                {`“${originalQuote(review)}”`}
               </p>
+              {missingLanguages(review).length > 0 && (
+                <span style={{ font: 'var(--type-caption)', color: 'var(--state-notice)' }}>
+                  Übersetzung fehlt: {missingLanguages(review).join(', ')}
+                </span>
+              )}
             </div>
 
             <div className="lr-admin-row__actions">

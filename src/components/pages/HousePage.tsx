@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { Button, Card, InfoRow, Quote, Rule, SectionHeading } from '@/components/ds';
 import { Hero } from '@/components/site/Hero';
 import { MultilineText } from '@/components/site/MultilineText';
+import { Hosts } from '@/components/site/Hosts';
 import { LocationMap } from '@/components/site/LocationMap';
 import { Section } from '@/components/site/Section';
 import { getReviews } from '@/lib/db/menu';
@@ -11,7 +12,7 @@ import type { Dictionary } from '@/lib/i18n';
 
 export async function HousePage({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const t = dict.house;
-  const [featured] = await getReviews(1);
+  const [featured] = await getReviews(locale, 1);
 
   return (
     <>
@@ -38,6 +39,14 @@ export async function HousePage({ locale, dict }: { locale: Locale; dict: Dictio
       </Section>
 
       <Section tone="card">
+        <SectionHeading
+          align="center" eyebrow={t.hosts.eyebrow} title={t.hosts.title} intro={t.hosts.intro}
+          style={{ marginBottom: 'var(--space-56)' }}
+        />
+        <Hosts strings={t.hosts} />
+      </Section>
+
+      <Section>
         <div className="lr-grid-3">
           {(['kitchen', 'produce', 'evening'] as const).map((key) => (
             <Card key={key} variant="plain" eyebrow={t.principles[key].eyebrow} title={t.principles[key].title}>
@@ -49,8 +58,12 @@ export async function HousePage({ locale, dict }: { locale: Locale; dict: Dictio
 
       {featured && (
         <Section tone="inverse">
-          <Quote tone="inverse" align="center" attribution={featured.author} source={featured.source}>
-            <span lang="en">{`“${featured.quote}”`}</span>
+          <Quote
+            tone="inverse" align="center"
+            attribution={featured.author}
+            source={featured.translated ? `${featured.source} · ${dict.home.reviews.translated}` : featured.source}
+          >
+            <span lang={featured.lang}>{`“${featured.quote}”`}</span>
           </Quote>
         </Section>
       )}

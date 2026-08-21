@@ -231,9 +231,13 @@ export async function shiftAnnouncement(formData: FormData): Promise<void> {
 /* --- Guest reviews -------------------------------------------------------- */
 
 function reviewInput(formData: FormData): ReviewInput {
+  const original = text(formData, 'original_lang');
   return {
     is_published: flag(formData, 'is_published'),
-    quote: text(formData, 'quote'),
+    quote_de: text(formData, 'quote_de'),
+    quote_es: text(formData, 'quote_es'),
+    quote_en: text(formData, 'quote_en'),
+    original_lang: (['de', 'es', 'en'] as const).includes(original as 'de') ? original : 'de',
     author: text(formData, 'author'),
     source: text(formData, 'source'),
   };
@@ -243,7 +247,9 @@ export async function saveReview(_prev: FormState, formData: FormData): Promise<
   await requireSession();
 
   const data = reviewInput(formData);
-  if (!data.quote) return { error: 'Das Zitat fehlt.' };
+  if (!data.quote_de && !data.quote_es && !data.quote_en) {
+    return { error: 'Es fehlt ein Zitat — mindestens eine Sprache muss ausgefüllt sein.' };
+  }
 
   const rawId = String(formData.get('id') ?? '');
   try {
@@ -277,9 +283,7 @@ export async function shiftReview(formData: FormData): Promise<void> {
 export async function saveSettings(_prev: FormState, formData: FormData): Promise<FormState> {
   await requireSession();
 
-  const fields = [
-    'eyebrow', 'title', 'intro', 'set_menu_title', 'set_menu_body',
-  ] as const;
+  const fields = ['eyebrow', 'title', 'intro'] as const;
 
   const data = {} as MenuSettingsRow;
   for (const field of fields) {

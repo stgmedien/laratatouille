@@ -9,6 +9,9 @@
  */
 export const HOUSE = {
   name: 'La Ratatouille',
+  /** Firmierung und Steuernummer, wie sie ins Impressum gehören. */
+  legalName: 'La Ratatouille CB',
+  taxId: 'E54276001',
   tagline: 'Cocina mediterránea',
   street: 'Calle Mayor 14',
   postalCode: '03769',

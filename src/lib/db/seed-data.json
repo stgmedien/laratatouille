@@ -8,13 +8,7 @@
     "title_en": "Classical cooking, Mediterranean produce",
     "intro_de": "Eine Karte quer durchs Mittelmeer, die mit der Saison wechselt. Alle Preise inklusive IVA.",
     "intro_es": "Una carta que recorre el Mediterráneo y cambia con la temporada. Todos los precios incluyen IVA.",
-    "intro_en": "A menu that travels the Mediterranean and changes with the season. All prices include IVA.",
-    "set_menu_title_de": "",
-    "set_menu_title_es": "",
-    "set_menu_title_en": "",
-    "set_menu_body_de": "",
-    "set_menu_body_es": "",
-    "set_menu_body_en": ""
+    "intro_en": "A menu that travels the Mediterranean and changes with the season. All prices include IVA."
   },
   "categories": [
     {
@@ -216,48 +210,158 @@
           "tags": []
         }
       ]
+    },
+    {
+      "sort_order": 3,
+      "is_published": true,
+      "name_de": "Desserts",
+      "name_es": "Postres",
+      "name_en": "Desserts",
+      "intro_de": "",
+      "intro_es": "",
+      "intro_en": "",
+      "dishes": [
+        {
+          "sort_order": 1,
+          "is_published": true,
+          "is_highlight": false,
+          "price": "8 €",
+          "name_de": "Leichtes Himbeermousse",
+          "name_es": "Espuma de frambuesa",
+          "name_en": "Light raspberry mousse",
+          "description_de": "Mit Vanilleeis.",
+          "description_es": "Con helado de vainilla.",
+          "description_en": "With vanilla ice cream.",
+          "origin_de": "",
+          "origin_es": "",
+          "origin_en": "",
+          "tags": []
+        },
+        {
+          "sort_order": 2,
+          "is_published": true,
+          "is_highlight": false,
+          "price": "8 €",
+          "name_de": "Eine Auswahl erfrischender Sorbets",
+          "name_es": "Una selección de sorbetes refrescantes",
+          "name_en": "A selection of refreshing sorbets",
+          "description_de": "",
+          "description_es": "",
+          "description_en": "",
+          "origin_de": "",
+          "origin_es": "",
+          "origin_en": "",
+          "tags": []
+        },
+        {
+          "sort_order": 3,
+          "is_published": true,
+          "is_highlight": false,
+          "price": "9 €",
+          "name_de": "Panna cotta",
+          "name_es": "Panna cotta",
+          "name_en": "Panna cotta",
+          "description_de": "Mit Himbeersorbet.",
+          "description_es": "Con sorbete de frambuesa.",
+          "description_en": "With raspberry sorbet.",
+          "origin_de": "",
+          "origin_es": "",
+          "origin_en": "",
+          "tags": []
+        },
+        {
+          "sort_order": 4,
+          "is_published": true,
+          "is_highlight": false,
+          "price": "10 €",
+          "name_de": "Geeistes Grand-Marnier-Parfait",
+          "name_es": "Semifrío de Grand Marnier",
+          "name_en": "Frozen Grand Marnier parfait",
+          "description_de": "Mit Mousse au Chocolat.",
+          "description_es": "Con mousse au chocolat.",
+          "description_en": "With chocolate mousse.",
+          "origin_de": "",
+          "origin_es": "",
+          "origin_en": "",
+          "tags": []
+        },
+        {
+          "sort_order": 5,
+          "is_published": true,
+          "is_highlight": false,
+          "price": "12 €",
+          "name_de": "Eine Variation unserer hausgemachten Desserts",
+          "name_es": "Una variación de nuestros postres caseros",
+          "name_en": "Assorted homemade sweets",
+          "description_de": "",
+          "description_es": "",
+          "description_en": "",
+          "origin_de": "",
+          "origin_es": "",
+          "origin_en": "",
+          "tags": []
+        }
+      ]
     }
   ],
   "reviews": [
     {
       "sort_order": 1,
       "is_published": true,
-      "quote": "The food was so delicious and the ambiance is to die for.",
+      "quote_de": "Das Essen war so gut, und für diese Atmosphäre könnte man sterben.",
+      "quote_es": "La comida estaba buenísima y por este ambiente uno se muere.",
+      "quote_en": "The food was so delicious and the ambiance is to die for.",
+      "original_lang": "en",
       "author": "Neal B.",
       "source": "Google"
     },
     {
       "sort_order": 2,
       "is_published": true,
-      "quote": "Small, intimate, friendly and above all DELICIOUS!",
+      "quote_de": "Klein, intim, herzlich — und vor allem KÖSTLICH!",
+      "quote_es": "Pequeño, íntimo, cordial y sobre todo ¡DELICIOSO!",
+      "quote_en": "Small, intimate, friendly and above all DELICIOUS!",
+      "original_lang": "en",
       "author": "Nick L.",
       "source": "Google"
     },
     {
       "sort_order": 3,
       "is_published": true,
-      "quote": "Best meal we have had for a long time. Cut above the rest.",
+      "quote_de": "Das beste Essen seit Langem. Eine Klasse für sich.",
+      "quote_es": "La mejor comida en mucho tiempo. Está por encima del resto.",
+      "quote_en": "Best meal we have had for a long time. Cut above the rest.",
+      "original_lang": "en",
       "author": "Lisa E.",
       "source": "Google"
     },
     {
       "sort_order": 4,
       "is_published": true,
-      "quote": "Book in advance for a sumptuous dining experience. You will not be disappointed.",
+      "quote_de": "Rechtzeitig reservieren für einen erlesenen Abend. Man wird nicht enttäuscht.",
+      "quote_es": "Reserve con antelación para una velada exquisita. No quedará decepcionado.",
+      "quote_en": "Book in advance for a sumptuous dining experience. You will not be disappointed.",
+      "original_lang": "en",
       "author": "Brian R.",
       "source": "Google"
     },
     {
       "sort_order": 5,
       "is_published": true,
-      "quote": "You could feel and sense the focus on regional products.",
+      "quote_de": "Man merkt und schmeckt, dass hier auf regionale Produkte gesetzt wird.",
+      "quote_es": "Se nota y se percibe la apuesta por el producto de la región.",
+      "quote_en": "You could feel and sense the focus on regional products.",
+      "original_lang": "en",
       "author": "Marion R.",
       "source": "Google"
     },
     {
       "sort_order": 6,
       "is_published": true,
-      "quote": "Great service, and experience that makes you feel at home.",
+      "quote_de": "Großartiger Service, ein Abend, an dem man sich zu Hause fühlt.",
+      "quote_es": "Un servicio estupendo y una velada en la que uno se siente como en casa.",
+      "quote_en": "Great service, and experience that makes you feel at home.",
+      "original_lang": "en",
       "author": "Olga D.",
       "source": "Google"
     }

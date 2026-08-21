@@ -12,7 +12,7 @@ export const de = {
     },
     house: {
       title: 'Das Haus',
-      description: 'Timo Kaiser und Gesine Janasik, ausgebildet im Schwarzwald, zuvor Ikarus in Dénia. Wie wir arbeiten und wo Sie uns finden.',
+      description: 'Timo Kaiser und Gesine Janasik, ein Gastronomenehepaar mit klassischer Ausbildung. Wie wir arbeiten und wo Sie uns finden.',
     },
     reserve: {
       title: 'Reservieren',
@@ -46,9 +46,9 @@ export const de = {
     },
     house: {
       eyebrow: 'Das Haus',
-      title: 'Gelernt im Schwarzwald, gekocht am Mittelmeer',
-      intro: 'Timo Kaiser und Gesine Janasik führen das Haus in der Calle Mayor.',
-      body: 'Beide wurden in renommierten Betrieben im Schwarzwald ausgebildet und haben ihr Handwerk in Deutschland, Österreich und Spanien vertieft. Vor La Ratatouille führten sie das Ikarus in Dénia.',
+      title: 'Ein Gastronomenehepaar am Mittelmeer',
+      intro: 'Timo Kaiser und Gesine Janasik führen das Haus in der Calle Mayor gemeinsam.',
+      body: 'Beide wurden in renommierten Betrieben im Schwarzwald ausgebildet und haben ihr Handwerk über Jahre in Deutschland, Österreich und Spanien vertieft. Er steht am Herd, sie führt den Gastraum.',
       cta: 'Über uns',
       imageAlt: 'Rinderfilet in der Pfanne am Pass der Küche',
     },
@@ -64,6 +64,7 @@ export const de = {
       title: 'Was unsere Gäste schreiben',
       intro: 'Auszüge aus Bewertungen unserer Gäste.',
       cta: 'Alle Bewertungen bei Google',
+      translated: 'übersetzt',
     },
     info: {
       eyebrow: 'Im Haus',
@@ -102,18 +103,33 @@ export const de = {
   house: {
     hero: {
       eyebrow: 'Das Haus',
-      title: 'Zwei Gastgeber, eine klassische Schule',
+      title: 'Ein Ehepaar, eine klassische Schule',
       sub: 'Ein Dorfhaus in der Calle Mayor, eine Küche zwischen Bouillabaisse und Ibérico.',
       imageAlt: 'Am Pass der Küche von La Ratatouille während des Service',
     },
     story: {
       eyebrow: 'Die Gastgeber',
-      title: 'Timo Kaiser und Gesine Janasik',
+      title: 'Seit Jahren im selben Haus',
       body1:
-        'Beide wurden in renommierten Betrieben im Schwarzwald ausgebildet und haben ihr Handwerk anschließend in Deutschland, Österreich und Spanien vertieft.',
+        'Timo Kaiser und Gesine Janasik sind ein Gastronomenehepaar. Beide wurden in renommierten Betrieben im Schwarzwald ausgebildet und haben ihr Handwerk anschließend über Jahre in Deutschland, Österreich und Spanien vertieft.',
       body2:
-        'Vor La Ratatouille führten sie das Ikarus in Dénia. Heute steht Timo Kaiser am Herd, Gesine Janasik führt den Gastraum — auf Deutsch, Spanisch, Englisch und Französisch.',
+        'Dass beide vom Fach sind, merkt man am Abend: Was aus der Küche kommt und was im Gastraum passiert, ist dieselbe Handschrift.',
       imageAlt: 'Gäste beim Abendessen im Gastraum',
+    },
+    hosts: {
+      eyebrow: 'Küche und Gastraum',
+      title: 'Beide vom Fach',
+      intro: 'Ein Gastronomenehepaar, das sich die Arbeit nicht aufteilt, sondern teilt.',
+      chef: {
+        name: 'Timo Kaiser',
+        role: 'Küche',
+        body: 'Verantwortet Karte und Einkauf und steht an jedem Abend selbst am Herd.',
+      },
+      host: {
+        name: 'Gesine Janasik',
+        role: 'Gastraum',
+        body: 'Empfängt die Gäste, berät beim Wein und behält den ganzen Abend im Blick.',
+      },
     },
     principles: {
       kitchen: {
@@ -219,7 +235,6 @@ export const de = {
     title: 'Impressum',
     intro: 'Angaben gemäß den Informationspflichten für Dienste der Informationsgesellschaft (Ley 34/2002, LSSI-CE).',
     operatorHeading: 'Betreiber',
-    operatorNote: 'Bitte hier die vollständige Firmierung und die Steuernummer (NIF/CIF) eintragen.',
     contactHeading: 'Kontakt',
     responsibleHeading: 'Inhaltlich verantwortlich',
     disputeHeading: 'Streitbeilegung',

@@ -3,7 +3,8 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Button, IconButton, Wordmark } from '@/components/ds';
+import { Button, IconButton } from '@/components/ds';
+import { Brand, BrandSwitch } from './Brand';
 import { HOUSE } from '@/lib/house';
 import { localeNames, locales, pathFor, type Locale, type PageKey } from '@/lib/i18n/config';
 import type { Dictionary } from '@/lib/i18n';
@@ -61,7 +62,7 @@ export function SiteHeader({ locale, strings, overHero, activePage }: Props) {
       >
         <div className="lr-container lr-header__inner">
           <Link href={pathFor('home', locale)} aria-label={strings.siteName} style={{ border: 'none', display: 'flex' }}>
-            <Wordmark size={20} tone={dark ? 'inverse' : 'default'} showSubtitle={false} />
+            <BrandSwitch inverse={dark} />
           </Link>
 
           <nav className="lr-nav lr-nav--desktop lr-no-print" aria-label={strings.siteName}>
@@ -115,7 +116,7 @@ export function SiteHeader({ locale, strings, overHero, activePage }: Props) {
       {drawerOpen && (
         <div className="lr-drawer" id="lr-drawer" role="dialog" aria-modal="true">
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 44 }}>
-            <Wordmark size={20} showSubtitle={false} />
+            <Brand />
             <IconButton name="x" label={strings.close} onClick={() => setDrawerOpen(false)} />
           </div>
 
