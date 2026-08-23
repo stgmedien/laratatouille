@@ -10,7 +10,8 @@ export interface MailMessage {
 
 export class MailNotConfiguredError extends Error {
   constructor() {
-    super('Kein Mailversand konfiguriert: RESEND_API_KEY oder SMTP_HOST fehlen.');
+    super('Kein Mailversand konfiguriert: es fehlen RESEND_API_KEY beziehungsweise '
+      + 'SMTP_HOST, eine Absenderadresse (RESERVATION_FROM) oder ein Empfänger (RESERVATION_TO).');
     this.name = 'MailNotConfiguredError';
   }
 }
@@ -30,10 +31,15 @@ export async function sendMail(message: MailMessage): Promise<void> {
   const to = recipients();
   if (to.length === 0) throw new MailNotConfiguredError();
 
+  // Eine gesetzte, aber leere Variable würde einen Absender wie
+  // "La Ratatouille <>" erzeugen — den nimmt kein Server an. Deshalb || statt
+  // ?? und ein klarer Abbruch, wenn nichts Brauchbares übrig bleibt.
+  const sender = process.env.RESERVATION_FROM || process.env.SMTP_USER || '';
+
   if (process.env.RESEND_API_KEY) {
     const { Resend } = await import('resend');
     const resend = new Resend(process.env.RESEND_API_KEY);
-    const from = process.env.RESERVATION_FROM ?? 'onboarding@resend.dev';
+    const from = sender || 'onboarding@resend.dev';
 
     const { error } = await resend.emails.send({
       from: `La Ratatouille <${from}>`,
@@ -48,6 +54,7 @@ export async function sendMail(message: MailMessage): Promise<void> {
   }
 
   if (process.env.SMTP_HOST) {
+    if (!sender) throw new MailNotConfiguredError();
     const nodemailer = (await import('nodemailer')).default;
     const port = Number(process.env.SMTP_PORT ?? 587);
 
@@ -61,7 +68,7 @@ export async function sendMail(message: MailMessage): Promise<void> {
     });
 
     await transport.sendMail({
-      from: `"La Ratatouille" <${process.env.RESERVATION_FROM ?? process.env.SMTP_USER}>`,
+      from: `"La Ratatouille" <${sender}>`,
       to: to.join(', '),
       subject: message.subject,
       text: message.text,
