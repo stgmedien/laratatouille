@@ -3,7 +3,7 @@ import { db, hasDatabase } from './client';
 import {
   DISH_TAGS,
   type AnnouncementRow, type CategoryRow, type DishRow, type DishTag,
-  type MenuSettingsRow, type ReviewRow,
+  type MenuRow, type MenuSettingsRow, type ReviewRow,
 } from './types';
 
 export class NoDatabaseError extends Error {
@@ -338,6 +338,85 @@ export async function moveAnnouncement(id: number, direction: 'up' | 'down'): Pr
 
   await s`UPDATE announcements SET sort_order = ${neighbour.sort_order} WHERE id = ${id}`;
   await s`UPDATE announcements SET sort_order = ${current.sort_order} WHERE id = ${neighbour.id}`;
+}
+
+/* --- Feste Menüs ---------------------------------------------------------- */
+
+export async function listMenus(): Promise<MenuRow[]> {
+  return (await sql()`
+    SELECT id, sort_order, is_published, price,
+           title_de, title_es, title_en, intro_de, intro_es, intro_en,
+           courses_de, courses_es, courses_en
+    FROM menus ORDER BY sort_order, id
+  `) as MenuRow[];
+}
+
+export async function getMenu(id: number): Promise<MenuRow | null> {
+  const rows = (await sql()`
+    SELECT id, sort_order, is_published, price,
+           title_de, title_es, title_en, intro_de, intro_es, intro_en,
+           courses_de, courses_es, courses_en
+    FROM menus WHERE id = ${id}
+  `) as MenuRow[];
+  return rows[0] ?? null;
+}
+
+export type MenuInput = Omit<MenuRow, 'id' | 'sort_order'>;
+
+export async function createMenu(data: MenuInput): Promise<number> {
+  const rows = (await sql()`
+    INSERT INTO menus (
+      sort_order, is_published, price,
+      title_de, title_es, title_en, intro_de, intro_es, intro_en,
+      courses_de, courses_es, courses_en
+    ) VALUES (
+      (SELECT COALESCE(MAX(sort_order), 0) + 1 FROM menus),
+      ${data.is_published}, ${data.price},
+      ${data.title_de}, ${data.title_es}, ${data.title_en},
+      ${data.intro_de}, ${data.intro_es}, ${data.intro_en},
+      ${data.courses_de}, ${data.courses_es}, ${data.courses_en}
+    )
+    RETURNING id
+  `) as { id: number }[];
+  return rows[0].id;
+}
+
+export async function updateMenu(id: number, data: MenuInput): Promise<void> {
+  await sql()`
+    UPDATE menus SET
+      is_published = ${data.is_published}, price = ${data.price},
+      title_de = ${data.title_de}, title_es = ${data.title_es}, title_en = ${data.title_en},
+      intro_de = ${data.intro_de}, intro_es = ${data.intro_es}, intro_en = ${data.intro_en},
+      courses_de = ${data.courses_de}, courses_es = ${data.courses_es}, courses_en = ${data.courses_en},
+      updated_at = NOW()
+    WHERE id = ${id}
+  `;
+}
+
+export async function deleteMenu(id: number): Promise<void> {
+  await sql()`DELETE FROM menus WHERE id = ${id}`;
+}
+
+export async function moveMenu(id: number, direction: 'up' | 'down'): Promise<void> {
+  const s = sql();
+
+  const neighbours = (direction === 'up'
+    ? await s`SELECT id, sort_order FROM menus
+              WHERE sort_order < (SELECT sort_order FROM menus WHERE id = ${id})
+              ORDER BY sort_order DESC LIMIT 1`
+    : await s`SELECT id, sort_order FROM menus
+              WHERE sort_order > (SELECT sort_order FROM menus WHERE id = ${id})
+              ORDER BY sort_order ASC LIMIT 1`) as Neighbour[];
+
+  const neighbour = neighbours[0];
+  if (!neighbour) return;
+
+  const currentRows = (await s`SELECT sort_order FROM menus WHERE id = ${id}`) as Neighbour[];
+  const current = currentRows[0];
+  if (!current) return;
+
+  await s`UPDATE menus SET sort_order = ${neighbour.sort_order} WHERE id = ${id}`;
+  await s`UPDATE menus SET sort_order = ${current.sort_order} WHERE id = ${neighbour.id}`;
 }
 
 /* --- Menu page settings --------------------------------------------------- */

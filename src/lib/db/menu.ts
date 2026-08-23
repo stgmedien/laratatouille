@@ -5,8 +5,8 @@ import { SEED_CATEGORIES, SEED_REVIEWS, SEED_SETTINGS } from './seed-data';
 import {
   localiseDish, pick,
   type CategoryRow, type DishRow, type LocalisedCategory, type LocalisedDish,
-  type AnnouncementRow, type LocalisedMenuSettings, type LocalisedReview,
-  type MenuSettingsRow, type ReviewRow,
+  type AnnouncementRow, type LocalisedMenu, type LocalisedMenuSettings, type LocalisedReview,
+  type MenuRow, type MenuSettingsRow, type ReviewRow,
 } from './types';
 
 /* -------------------------------------------------------------------------
@@ -157,4 +157,27 @@ export async function getActiveAnnouncement(locale: Locale): Promise<string | nu
 
   const text = rows[0] ? pick(rows[0], 'text', locale) : '';
   return text || null;
+}
+
+/** Die festen Menüs, die unter der Karte stehen. */
+export async function getMenus(locale: Locale): Promise<LocalisedMenu[]> {
+  if (!hasDatabase) return [];
+
+  const sql = db();
+  const rows = (await sql`
+    SELECT id, sort_order, is_published, price,
+           title_de, title_es, title_en, intro_de, intro_es, intro_en,
+           courses_de, courses_es, courses_en
+    FROM menus WHERE is_published ORDER BY sort_order, id
+  `) as MenuRow[];
+
+  return rows
+    .map((row) => ({
+      id: row.id,
+      title: pick(row, 'title', locale),
+      intro: pick(row, 'intro', locale),
+      price: row.price ?? '',
+      courses: pick(row, 'courses', locale).split('\n').map((c) => c.trim()).filter(Boolean),
+    }))
+    .filter((m) => m.title);
 }

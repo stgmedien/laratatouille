@@ -98,6 +98,8 @@ export const de = {
     empty: 'Zurzeit ist keine Karte hinterlegt.',
     emptyCategory: 'In dieser Kategorie steht gerade nichts auf der Karte.',
     reserveCta: 'Tisch reservieren',
+    setMenuEyebrow: 'Für den ganzen Tisch',
+    setMenuTitle: 'Unsere Menüs',
   },
 
   house: {

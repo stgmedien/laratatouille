@@ -114,3 +114,24 @@ ALTER TABLE reviews DROP COLUMN IF EXISTS quote;
 
 ALTER TABLE categories
   ADD COLUMN IF NOT EXISTS starts_print_page BOOLEAN NOT NULL DEFAULT FALSE;
+
+-- Feste Menüs, die unter der Karte stehen. Die Gänge liegen als mehrzeiliger
+-- Text, eine Zeile je Gang — das lässt sich im Backend so leicht pflegen wie
+-- ein Gericht und braucht keine zweite Tabelle.
+CREATE TABLE IF NOT EXISTS menus (
+  id            SERIAL PRIMARY KEY,
+  sort_order    INTEGER     NOT NULL DEFAULT 0,
+  is_published  BOOLEAN     NOT NULL DEFAULT TRUE,
+  price         TEXT        NOT NULL DEFAULT '',
+  title_de      TEXT        NOT NULL,
+  title_es      TEXT        NOT NULL DEFAULT '',
+  title_en      TEXT        NOT NULL DEFAULT '',
+  intro_de      TEXT        NOT NULL DEFAULT '',
+  intro_es      TEXT        NOT NULL DEFAULT '',
+  intro_en      TEXT        NOT NULL DEFAULT '',
+  courses_de    TEXT        NOT NULL DEFAULT '',
+  courses_es    TEXT        NOT NULL DEFAULT '',
+  courses_en    TEXT        NOT NULL DEFAULT '',
+  created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);

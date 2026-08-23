@@ -4,11 +4,11 @@ import { revalidatePath } from 'next/cache';
 import { cookies, headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import {
-  createAnnouncement, createCategory, createDish, createReview,
-  deleteAnnouncement, deleteCategory, deleteDish, deleteReview,
-  moveAnnouncement, moveCategory, moveDish, moveReview,
-  updateAnnouncement, updateCategory, updateDish, updateReview, updateSettings,
-  type AnnouncementInput, type CategoryInput, type DishInput, type ReviewInput,
+  createAnnouncement, createCategory, createDish, createMenu, createReview,
+  deleteAnnouncement, deleteCategory, deleteDish, deleteMenu, deleteReview,
+  moveAnnouncement, moveCategory, moveDish, moveMenu, moveReview,
+  updateAnnouncement, updateCategory, updateDish, updateMenu, updateReview, updateSettings,
+  type AnnouncementInput, type CategoryInput, type DishInput, type MenuInput, type ReviewInput,
 } from '@/lib/db/admin';
 import { DISH_TAGS, type MenuSettingsRow } from '@/lib/db/types';
 import {
@@ -172,6 +172,57 @@ export async function shiftDish(formData: FormData): Promise<void> {
   await moveDish(Number(formData.get('id')), direction);
   refreshSite();
   redirect('/admin');
+}
+
+/* --- Feste Menüs ---------------------------------------------------------- */
+
+function menuInput(formData: FormData): MenuInput {
+  return {
+    is_published: flag(formData, 'is_published'),
+    price: text(formData, 'price'),
+    title_de: text(formData, 'title_de'),
+    title_es: text(formData, 'title_es'),
+    title_en: text(formData, 'title_en'),
+    intro_de: text(formData, 'intro_de'),
+    intro_es: text(formData, 'intro_es'),
+    intro_en: text(formData, 'intro_en'),
+    courses_de: text(formData, 'courses_de'),
+    courses_es: text(formData, 'courses_es'),
+    courses_en: text(formData, 'courses_en'),
+  };
+}
+
+export async function saveMenu(_prev: FormState, formData: FormData): Promise<FormState> {
+  await requireSession();
+
+  const data = menuInput(formData);
+  if (!data.title_de) return { error: 'Der deutsche Titel fehlt.' };
+
+  const rawId = String(formData.get('id') ?? '');
+  try {
+    if (rawId && rawId !== 'neu') await updateMenu(Number(rawId), data);
+    else await createMenu(data);
+  } catch (error) {
+    return { error: error instanceof Error ? error.message : 'Speichern fehlgeschlagen.' };
+  }
+
+  refreshSite();
+  redirect('/admin/menues');
+}
+
+export async function removeMenu(formData: FormData): Promise<void> {
+  await requireSession();
+  await deleteMenu(Number(formData.get('id')));
+  refreshSite();
+  redirect('/admin/menues');
+}
+
+export async function shiftMenu(formData: FormData): Promise<void> {
+  await requireSession();
+  const direction = formData.get('direction') === 'up' ? 'up' : 'down';
+  await moveMenu(Number(formData.get('id')), direction);
+  refreshSite();
+  redirect('/admin/menues');
 }
 
 /* --- Notices -------------------------------------------------------------- */

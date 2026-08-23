@@ -79,6 +79,28 @@ export interface AnnouncementRow {
   text_en: string;
 }
 
+/**
+ * Ein festes Menü unter der Karte. Die Gänge stehen als mehrzeiliger Text,
+ * eine Zeile je Gang.
+ */
+export interface MenuRow {
+  id: number;
+  sort_order: number;
+  is_published: boolean;
+  price: string;
+  title_de: string; title_es: string; title_en: string;
+  intro_de: string; intro_es: string; intro_en: string;
+  courses_de: string; courses_es: string; courses_en: string;
+}
+
+export interface LocalisedMenu {
+  id: number;
+  title: string;
+  intro: string;
+  price: string;
+  courses: string[];
+}
+
 export interface MenuSettingsRow {
   eyebrow_de: string; eyebrow_es: string; eyebrow_en: string;
   title_de: string; title_es: string; title_en: string;

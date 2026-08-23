@@ -1,16 +1,19 @@
 import Image from 'next/image';
 import { MenuItem, Notice, Rule, SectionHeading, Tag } from '@/components/ds';
 import { MenuPrint } from '@/components/site/MenuPrint';
+import { SetMenus } from '@/components/site/SetMenus';
 import { PrintButton } from '@/components/site/PrintButton';
 import { Section } from '@/components/site/Section';
-import { getMenu, getMenuSettings } from '@/lib/db/menu';
+import { getMenu, getMenuSettings, getMenus } from '@/lib/db/menu';
 import { DISH_TAGS, type DishTag } from '@/lib/db/types';
 import type { Locale } from '@/lib/i18n/config';
 import type { Dictionary } from '@/lib/i18n';
 import { tagsFor } from './tags';
 
 export async function MenuPage({ locale, dict }: { locale: Locale; dict: Dictionary }) {
-  const [categories, settings] = await Promise.all([getMenu(locale), getMenuSettings(locale)]);
+  const [categories, settings, menus] = await Promise.all([
+    getMenu(locale), getMenuSettings(locale), getMenus(locale),
+  ]);
   const t = dict.menu;
 
   // The legend only earns its place if the menu actually carries those marks.
@@ -126,6 +129,19 @@ export async function MenuPage({ locale, dict }: { locale: Locale; dict: Diction
         )}
       </Section>
 
+
+      {menus.length > 0 && (
+        <Section tone="sunken">
+          <div className="lr-menu-column">
+            <SectionHeading
+              eyebrow={dict.menu.setMenuEyebrow}
+              title={dict.menu.setMenuTitle}
+              style={{ marginBottom: 'var(--space-56)' }}
+            />
+            <SetMenus menus={menus} />
+          </div>
+        </Section>
+      )}
     </>
   );
 }

@@ -100,6 +100,8 @@ export const en: Dictionary = {
     empty: 'No menu has been published yet.',
     emptyCategory: 'Nothing is on the menu in this category right now.',
     reserveCta: 'Book a table',
+    setMenuEyebrow: 'For the whole table',
+    setMenuTitle: 'Our set menus',
   },
 
   house: {

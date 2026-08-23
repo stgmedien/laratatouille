@@ -159,9 +159,19 @@ sie bleiben als Quellmaterial im Projekt liegen.
   dort erscheinen bis zu vier.
 * Eine Kategorie ohne sichtbare Gerichte wird auf der Website gar nicht erst angezeigt.
 
+**Karte ausdrucken** — der Knopf unter der Karte druckt schmale Blätter im Format 105 × 297 mm,
+also ein DIN-A4-Bogen der Länge nach halbiert. Wo ein neues Blatt beginnt, entscheidet das
+Häkchen „Beim Ausdruck auf einer neuen Karte beginnen“ an der Kategorie. Zurzeit: Vorspeisen und
+Fleisch & Fisch auf dem ersten Blatt, Desserts auf dem zweiten. Ein Blatt fasst etwa 271 mm
+Inhalt; die aktuelle Karte belegt 184 mm, es ist also Platz für weitere Gerichte.
+
 **Sprachen** — jedes Gericht hat Reiter für Deutsch, Español und English. Deutsch ist Pflicht;
 bleibt eine Übersetzung leer, zeigt die Website dort den deutschen Text. In der Übersicht steht
 bei unvollständigen Einträgen „Übersetzung fehlt“.
+
+**Menüs** — feste Menüs, die unter der Karte stehen. Titel, Preis, ein Einleitungssatz und die
+Gänge; die Gänge werden zeilenweise eingetragen, eine Zeile je Gang. Dreisprachig wie die Karte.
+Ohne sichtbares Menü verschwindet der Abschnitt.
 
 **Hinweise** — ein Banner über der Website, für eine Schließung oder geänderte Zeiten. Mit
 „Anzeigen ab“ und „Anzeigen bis“ erscheint und verschwindet er von allein; den Sommerurlaub
