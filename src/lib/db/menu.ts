@@ -20,7 +20,8 @@ const readCategories = cache(async (): Promise<CategoryRow[]> => {
   }
   const sql = db();
   return (await sql`
-    SELECT id, sort_order, is_published, name_de, name_es, name_en, intro_de, intro_es, intro_en
+    SELECT id, sort_order, is_published, starts_print_page,
+           name_de, name_es, name_en, intro_de, intro_es, intro_en
     FROM categories
     ORDER BY sort_order, id
   `) as CategoryRow[];
@@ -75,6 +76,7 @@ export async function getMenu(locale: Locale): Promise<LocalisedCategory[]> {
       id: c.id,
       name: pick(c, 'name', locale),
       intro: pick(c, 'intro', locale),
+      startsPrintPage: c.starts_print_page,
       dishes: dishes
         .filter((d) => d.category_id === c.id && d.is_published)
         .map((d) => localiseDish(d, locale, pick(c, 'name', locale))),

@@ -24,10 +24,15 @@ export function CategoryForm({ category }: { category: CategoryRow | null }) {
 
       {state.error && <Notice tone="danger">{state.error}</Notice>}
 
-      <div className="lr-admin-card">
+      <div className="lr-admin-card" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-8)' }}>
         <Checkbox
           id="is_published" name="is_published" label="Auf der Website sichtbar"
           defaultChecked={category ? category.is_published : true}
+        />
+        <Checkbox
+          id="starts_print_page" name="starts_print_page" label="Beim Ausdruck auf einer neuen Karte beginnen"
+          description="Der Ausdruck teilt die Karte in schmale Blätter. Ohne Häkchen läuft diese Kategorie auf der vorherigen Karte weiter."
+          defaultChecked={category?.starts_print_page ?? false}
         />
       </div>
 

@@ -28,14 +28,16 @@ function tagLiteral(tags: string[]): string {
 
 export async function listCategories(): Promise<CategoryRow[]> {
   return (await sql()`
-    SELECT id, sort_order, is_published, name_de, name_es, name_en, intro_de, intro_es, intro_en
+    SELECT id, sort_order, is_published, starts_print_page,
+           name_de, name_es, name_en, intro_de, intro_es, intro_en
     FROM categories ORDER BY sort_order, id
   `) as CategoryRow[];
 }
 
 export async function getCategory(id: number): Promise<CategoryRow | null> {
   const rows = (await sql()`
-    SELECT id, sort_order, is_published, name_de, name_es, name_en, intro_de, intro_es, intro_en
+    SELECT id, sort_order, is_published, starts_print_page,
+           name_de, name_es, name_en, intro_de, intro_es, intro_en
     FROM categories WHERE id = ${id}
   `) as CategoryRow[];
   return rows[0] ?? null;
@@ -45,10 +47,12 @@ export type CategoryInput = Omit<CategoryRow, 'id' | 'sort_order'>;
 
 export async function createCategory(data: CategoryInput): Promise<number> {
   const rows = (await sql()`
-    INSERT INTO categories (sort_order, is_published, name_de, name_es, name_en, intro_de, intro_es, intro_en)
-    VALUES (
+    INSERT INTO categories (
+      sort_order, is_published, starts_print_page,
+      name_de, name_es, name_en, intro_de, intro_es, intro_en
+    ) VALUES (
       (SELECT COALESCE(MAX(sort_order), 0) + 1 FROM categories),
-      ${data.is_published},
+      ${data.is_published}, ${data.starts_print_page},
       ${data.name_de}, ${data.name_es}, ${data.name_en},
       ${data.intro_de}, ${data.intro_es}, ${data.intro_en}
     )
@@ -61,6 +65,7 @@ export async function updateCategory(id: number, data: CategoryInput): Promise<v
   await sql()`
     UPDATE categories SET
       is_published = ${data.is_published},
+      starts_print_page = ${data.starts_print_page},
       name_de = ${data.name_de}, name_es = ${data.name_es}, name_en = ${data.name_en},
       intro_de = ${data.intro_de}, intro_es = ${data.intro_es}, intro_en = ${data.intro_en},
       updated_at = NOW()

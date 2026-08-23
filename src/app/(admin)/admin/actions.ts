@@ -72,6 +72,7 @@ function refreshSite() {
 function categoryInput(formData: FormData): CategoryInput {
   return {
     is_published: flag(formData, 'is_published'),
+    starts_print_page: flag(formData, 'starts_print_page'),
     name_de: text(formData, 'name_de'),
     name_es: text(formData, 'name_es'),
     name_en: text(formData, 'name_en'),

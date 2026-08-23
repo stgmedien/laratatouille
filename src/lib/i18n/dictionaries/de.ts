@@ -78,7 +78,7 @@ export const de = {
     },
     reserve: {
       eyebrow: 'Reservierung',
-      title: 'Ein Tisch für Ihren Abend',
+      title: 'Ein Tisch für Ihren Besuch',
       body: 'Schreiben Sie uns oder rufen Sie an. Wir bestätigen jede Anfrage persönlich.',
       cta: 'Tisch anfragen',
       call: 'Anrufen',
@@ -104,8 +104,8 @@ export const de = {
     hero: {
       eyebrow: 'Das Haus',
       title: 'Ein Ehepaar, eine klassische Schule',
-      sub: 'Ein Dorfhaus in der Calle Mayor, eine Küche zwischen Bouillabaisse und Ibérico.',
-      imageAlt: 'Am Pass der Küche von La Ratatouille während des Service',
+      sub: 'Ein Dorfhaus in der Calle Mayor, mittags wie abends geöffnet.',
+      imageAlt: 'Gäste bei Wein und Gespräch im Gastraum von La Ratatouille',
     },
     story: {
       eyebrow: 'Die Gastgeber',
@@ -135,7 +135,7 @@ export const de = {
       kitchen: {
         eyebrow: 'Küche',
         title: 'Klassisch gearbeitet',
-        body: 'Fonds, Saucen und Marinaden entstehen im Haus. Bouillabaisse mit Rouille, Confit, Saltimbocca — Zubereitungen, die ihre Zeit brauchen.',
+        body: 'Fonds, Saucen und Marinaden entstehen im Haus. Was Zeit braucht, bekommt sie — daran ändert auch ein voller Gastraum nichts.',
       },
       produce: {
         eyebrow: 'Produkt',
@@ -143,9 +143,9 @@ export const de = {
         body: 'Fisch von der Küste, Gemüse und Olivenöl aus der Marina Alta, dazu Weine aus der Region.',
       },
       evening: {
-        eyebrow: 'Der Abend',
+        eyebrow: 'Am Tisch',
         title: 'Wenige Tische',
-        body: 'Der Tisch gehört Ihnen für den ganzen Abend. Wir servieren in Ruhe und in einer Folge, die dazu passt.',
+        body: 'Der Tisch gehört Ihnen, solange Sie bleiben möchten. Wir servieren in Ruhe und in einer Folge, die dazu passt.',
       },
     },
     contact: {
@@ -177,6 +177,7 @@ export const de = {
       date: 'Datum',
       time: 'Uhrzeit',
       timeHint: 'mittags nur Fr & Sa',
+      dateHint: 'So & Mo Ruhetag',
       guests: 'Personen',
       guestsOne: 'Person',
       guestsMany: 'Personen',

@@ -80,7 +80,7 @@ export const en: Dictionary = {
     },
     reserve: {
       eyebrow: 'Reservations',
-      title: 'A table for your evening',
+      title: 'A table for your visit',
       body: 'Write to us or give us a call. We confirm every request personally.',
       cta: 'Request a table',
       call: 'Call us',
@@ -106,8 +106,8 @@ export const en: Dictionary = {
     hero: {
       eyebrow: 'The house',
       title: 'A married couple, one classical school',
-      sub: 'A village house on Calle Mayor, a kitchen between bouillabaisse and Ibérico.',
-      imageAlt: 'The kitchen pass at La Ratatouille during service',
+      sub: 'A village house on Calle Mayor, open at midday and in the evening.',
+      imageAlt: 'Guests over wine and conversation in the dining room of La Ratatouille',
     },
     story: {
       eyebrow: 'The hosts',
@@ -137,7 +137,7 @@ export const en: Dictionary = {
       kitchen: {
         eyebrow: 'Kitchen',
         title: 'Classically worked',
-        body: 'Stocks, sauces and marinades are made in house. Bouillabaisse with rouille, confit, saltimbocca — preparations that take their time.',
+        body: 'Stocks, sauces and marinades are made in house. What needs time gets it — a full dining room does not change that.',
       },
       produce: {
         eyebrow: 'Produce',
@@ -145,9 +145,9 @@ export const en: Dictionary = {
         body: 'Fish from the coast, vegetables and olive oil from the Marina Alta, and wines from the region.',
       },
       evening: {
-        eyebrow: 'The evening',
+        eyebrow: 'At the table',
         title: 'A handful of tables',
-        body: 'The table is yours for the whole evening. We serve calmly and in an order that suits it.',
+        body: 'The table is yours for as long as you would like to stay. We serve calmly and in an order that suits it.',
       },
     },
     contact: {
@@ -179,6 +179,7 @@ export const en: Dictionary = {
       date: 'Date',
       time: 'Time',
       timeHint: 'lunch on Fri & Sat only',
+      dateHint: 'closed Sun & Mon',
       guests: 'Guests',
       guestsOne: 'guest',
       guestsMany: 'guests',

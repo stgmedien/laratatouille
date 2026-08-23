@@ -80,7 +80,7 @@ export const es: Dictionary = {
     },
     reserve: {
       eyebrow: 'Reservas',
-      title: 'Una mesa para su velada',
+      title: 'Una mesa para su visita',
       body: 'Escríbanos o llámenos. Confirmamos cada solicitud personalmente.',
       cta: 'Solicitar mesa',
       call: 'Llamar',
@@ -106,8 +106,8 @@ export const es: Dictionary = {
     hero: {
       eyebrow: 'La casa',
       title: 'Un matrimonio, una escuela clásica',
-      sub: 'Una casa de pueblo en la Calle Mayor, una cocina entre la bullabesa y el ibérico.',
-      imageAlt: 'El pase de la cocina de La Ratatouille durante el servicio',
+      sub: 'Una casa de pueblo en la Calle Mayor, abierta a mediodía y por la noche.',
+      imageAlt: 'Clientes con vino y conversación en el comedor de La Ratatouille',
     },
     story: {
       eyebrow: 'Los anfitriones',
@@ -137,7 +137,7 @@ export const es: Dictionary = {
       kitchen: {
         eyebrow: 'Cocina',
         title: 'Oficio clásico',
-        body: 'Fondos, salsas y marinadas se elaboran en casa. Bullabesa con rouille, confitados, saltimbocca — elaboraciones que necesitan su tiempo.',
+        body: 'Fondos, salsas y marinadas se elaboran en casa. Lo que necesita tiempo, lo recibe; tampoco lo cambia un comedor lleno.',
       },
       produce: {
         eyebrow: 'Producto',
@@ -145,9 +145,9 @@ export const es: Dictionary = {
         body: 'Pescado de la costa, verdura y aceite de oliva de la Marina Alta, y vinos de la comarca.',
       },
       evening: {
-        eyebrow: 'La velada',
+        eyebrow: 'En la mesa',
         title: 'Pocas mesas',
-        body: 'La mesa es suya toda la velada. Servimos con calma y en un orden que lo acompaña.',
+        body: 'La mesa es suya mientras quiera quedarse. Servimos con calma y en un orden que lo acompaña.',
       },
     },
     contact: {
@@ -179,6 +179,7 @@ export const es: Dictionary = {
       date: 'Fecha',
       time: 'Hora',
       timeHint: 'mediodía solo vi & sá',
+      dateHint: 'do y lu cerrado',
       guests: 'Personas',
       guestsOne: 'persona',
       guestsMany: 'personas',

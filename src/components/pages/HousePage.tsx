@@ -17,7 +17,7 @@ export async function HousePage({ locale, dict }: { locale: Locale; dict: Dictio
   return (
     <>
       <Hero
-        src="/images/kueche.jpg" alt={t.hero.imageAlt}
+        src="/images/hero.jpg" alt={t.hero.imageAlt}
         eyebrow={t.hero.eyebrow} title={t.hero.title} sub={t.hero.sub}
         height={520} priority
       />

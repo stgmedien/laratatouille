@@ -20,6 +20,7 @@
       "intro_de": "",
       "intro_es": "",
       "intro_en": "",
+      "starts_print_page": false,
       "dishes": [
         {
           "sort_order": 1,
@@ -112,6 +113,7 @@
       "intro_de": "",
       "intro_es": "",
       "intro_en": "",
+      "starts_print_page": false,
       "dishes": [
         {
           "sort_order": 1,
@@ -220,6 +222,7 @@
       "intro_de": "",
       "intro_es": "",
       "intro_en": "",
+      "starts_print_page": true,
       "dishes": [
         {
           "sort_order": 1,

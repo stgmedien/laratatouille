@@ -25,6 +25,8 @@ export interface CategoryRow {
   id: number;
   sort_order: number;
   is_published: boolean;
+  /** Beginnt beim Ausdruck eine neue Karte. */
+  starts_print_page: boolean;
   name_de: string; name_es: string; name_en: string;
   intro_de: string; intro_es: string; intro_en: string;
 }
@@ -99,6 +101,7 @@ export interface LocalisedCategory {
   id: number;
   name: string;
   intro: string;
+  startsPrintPage: boolean;
   dishes: LocalisedDish[];
 }
 

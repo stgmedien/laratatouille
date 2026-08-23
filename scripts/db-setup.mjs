@@ -68,8 +68,11 @@ async function main() {
 
   for (const c of categories) {
     const [{ id }] = await sql`
-      INSERT INTO categories (sort_order, is_published, name_de, name_es, name_en, intro_de, intro_es, intro_en)
-      VALUES (${c.sort_order}, ${c.is_published}, ${c.name_de}, ${c.name_es}, ${c.name_en},
+      INSERT INTO categories (
+        sort_order, is_published, starts_print_page,
+        name_de, name_es, name_en, intro_de, intro_es, intro_en
+      ) VALUES (${c.sort_order}, ${c.is_published}, ${c.starts_print_page},
+              ${c.name_de}, ${c.name_es}, ${c.name_en},
               ${c.intro_de}, ${c.intro_es}, ${c.intro_en})
       RETURNING id
     `;

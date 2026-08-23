@@ -6,6 +6,8 @@ CREATE TABLE IF NOT EXISTS categories (
   id            SERIAL PRIMARY KEY,
   sort_order    INTEGER      NOT NULL DEFAULT 0,
   is_published  BOOLEAN      NOT NULL DEFAULT TRUE,
+  -- Beim Ausdruck der Karte hier eine neue Karte beginnen.
+  starts_print_page BOOLEAN  NOT NULL DEFAULT FALSE,
   name_de       TEXT         NOT NULL,
   name_es       TEXT         NOT NULL DEFAULT '',
   name_en       TEXT         NOT NULL DEFAULT '',
@@ -109,3 +111,6 @@ ALTER TABLE reviews
 -- mit "npm run db:seed -- --force" ohnehin durch die übersetzte Fassung
 -- ersetzt wird.
 ALTER TABLE reviews DROP COLUMN IF EXISTS quote;
+
+ALTER TABLE categories
+  ADD COLUMN IF NOT EXISTS starts_print_page BOOLEAN NOT NULL DEFAULT FALSE;

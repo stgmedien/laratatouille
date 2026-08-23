@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { MenuItem, Notice, Rule, SectionHeading, Tag } from '@/components/ds';
+import { MenuPrint } from '@/components/site/MenuPrint';
 import { PrintButton } from '@/components/site/PrintButton';
 import { Section } from '@/components/site/Section';
 import { getMenu, getMenuSettings } from '@/lib/db/menu';
@@ -19,6 +20,8 @@ export async function MenuPage({ locale, dict }: { locale: Locale; dict: Diction
 
   return (
     <>
+      <MenuPrint categories={categories} dict={dict} />
+
       <Section tone="card" tight>
         <SectionHeading
           as="h1" align="center"

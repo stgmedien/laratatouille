@@ -411,3 +411,116 @@ select.lr-field { appearance: none; padding-right: 40px; cursor: pointer; }
   background: var(--pine-700);
   box-shadow: 0 0 0 3px var(--linen-050), 0 0 0 4px var(--gilt-500), var(--shadow-md);
 }
+
+/* ---------------------------------------------------------------------------
+   Karte zum Ausdrucken. Ein DIN-A4-Blatt der Länge nach halbiert ergibt
+   105 × 297 mm — das schmale, hohe Format klassischer Speisekarten. Auf dem
+   Bildschirm bleibt dieser Baum unsichtbar.
+   --------------------------------------------------------------------------- */
+.lr-print { display: none; }
+
+@media print {
+  @page {
+    size: 105mm 297mm;
+    margin: 13mm 11mm;
+  }
+
+  /* Im Druck bleibt nur die Karte stehen. */
+  .lr-skip, .lr-banner, .lr-header, footer { display: none !important; }
+  main > *:not(.lr-print) { display: none !important; }
+
+  .lr-print {
+    display: block !important;
+    color: #2F2A28;
+    background: #fff;
+  }
+
+  .lr-print-card {
+    break-after: page;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+  }
+  .lr-print-card:last-child { break-after: auto; page-break-after: auto; }
+  .lr-print-break { display: none; }
+
+  .lr-print-head {
+    text-align: center;
+    margin-bottom: 9mm;
+  }
+  .lr-print-logo {
+    width: 52mm;
+    height: auto;
+    display: inline-block;
+  }
+
+  .lr-print-group { break-inside: avoid-page; }
+  .lr-print-group + .lr-print-group { margin-top: 7mm; }
+
+  .lr-print-cat {
+    font-family: var(--font-display);
+    font-size: 13pt;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    margin: 0 0 1.5mm;
+    padding-bottom: 1.5mm;
+    border-bottom: 0.4pt solid #BCA05F;
+  }
+
+  .lr-print-intro {
+    font-family: var(--font-body);
+    font-size: 7.5pt;
+    font-style: italic;
+    color: #6B645E;
+    margin: 0 0 2mm;
+  }
+
+  .lr-print-dish { margin-top: 3.4mm; break-inside: avoid; }
+
+  .lr-print-line {
+    display: flex;
+    align-items: baseline;
+    gap: 2mm;
+  }
+  .lr-print-name {
+    font-family: var(--font-display);
+    font-size: 10pt;
+    line-height: 1.2;
+  }
+  .lr-print-leader {
+    flex: 1;
+    min-width: 3mm;
+    border-bottom: 0.4pt dotted #B4ABA0;
+    transform: translateY(-1mm);
+  }
+  .lr-print-price {
+    font-family: var(--font-display);
+    font-size: 10pt;
+    font-variant-numeric: lining-nums tabular-nums;
+    white-space: nowrap;
+  }
+  .lr-print-desc {
+    font-family: var(--font-body);
+    font-size: 8pt;
+    line-height: 1.35;
+    color: #4A443E;
+    margin: 0.6mm 0 0;
+  }
+  .lr-print-meta {
+    font-family: var(--font-body);
+    font-size: 6.8pt;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8A8178;
+    margin: 0.8mm 0 0;
+  }
+
+  .lr-print-foot {
+    margin-top: auto;
+    padding-top: 6mm;
+    font-family: var(--font-body);
+    font-size: 6.5pt;
+    line-height: 1.4;
+    color: #8A8178;
+  }
+}

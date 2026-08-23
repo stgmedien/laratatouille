@@ -1,10 +1,10 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useActionState, useState } from 'react';
 import { useFormStatus } from 'react-dom';
 import { Button, Checkbox, Input, Notice, Select, Textarea } from '@/components/ds';
 import { submitReservation, type ReservationState } from '@/lib/actions/reservation';
-import { RESERVATION_TIMES } from '@/lib/house';
+import { HOUSE } from '@/lib/house';
 import type { Locale } from '@/lib/i18n/config';
 import type { Dictionary } from '@/lib/i18n';
 
@@ -16,6 +16,13 @@ const INITIAL: ReservationState = { status: 'idle' };
 function today(): string {
   const now = new Date();
   return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+}
+
+/** Sunday = 0 … Saturday = 6, read from a YYYY-MM-DD string without timezone drift. */
+function weekdayOf(iso: string): number | null {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(iso)) return null;
+  const d = new Date(`${iso}T12:00:00`);
+  return Number.isNaN(d.getTime()) ? null : d.getDay();
 }
 
 function SubmitButton({ t }: { t: ReserveStrings['form'] }) {
@@ -33,6 +40,32 @@ export function ReservationForm({ locale, strings, privacyHref, privacyLabel }: 
   const [state, action] = useActionState(submitReservation, INITIAL);
   const t = strings.form;
   const v = state.values ?? {};
+
+  const [date, setDate] = useState(v.date ?? '');
+  const [dateNotice, setDateNotice] = useState('');
+
+  const weekday = weekdayOf(date);
+  const lunchServed = weekday !== null && (HOUSE.lunchWeekdays as readonly number[]).includes(weekday);
+
+  // Bis ein Datum gewählt ist, stehen alle Zeiten zur Auswahl; danach nur die,
+  // die an diesem Wochentag tatsächlich bedient werden.
+  const times: string[] = weekday === null || lunchServed
+    ? [...HOUSE.lunchTimes, ...HOUSE.dinnerTimes]
+    : [...HOUSE.dinnerTimes];
+
+  /** Ruhetage lassen sich in einem Datumsfeld nicht ausgrauen — also weisen
+   *  wir sie im Moment der Auswahl zurück, statt den Gast bis zum Absenden
+   *  im Unklaren zu lassen. */
+  function onDateChange(value: string) {
+    const day = weekdayOf(value);
+    if (day !== null && (HOUSE.closedWeekdays as readonly number[]).includes(day)) {
+      setDate('');
+      setDateNotice(strings.errors.closed);
+      return;
+    }
+    setDate(value);
+    setDateNotice('');
+  }
 
   if (state.status === 'success') {
     return (
@@ -73,11 +106,17 @@ export function ReservationForm({ locale, strings, privacyHref, privacyLabel }: 
       />
       <Input
         id="r-date" name="date" type="date" label={t.date} min={today()}
-        required defaultValue={v.date} error={state.fieldErrors?.date}
+        hint={t.dateHint} required
+        value={date}
+        onChange={(e) => onDateChange(e.target.value)}
+        error={dateNotice || state.fieldErrors?.date}
       />
       <Select
-        id="r-time" name="time" label={t.time} hint={t.timeHint}
-        options={[...RESERVATION_TIMES]} defaultValue={v.time ?? '20:00'}
+        key={times.length}
+        id="r-time" name="time" label={t.time}
+        hint={lunchServed ? t.timeHint : undefined}
+        options={times}
+        defaultValue={times.includes(v.time ?? '') ? v.time : '20:00'}
         error={state.fieldErrors?.time}
       />
       <Select id="r-guests" name="guests" label={t.guests} options={guestOptions} defaultValue={v.guests ?? '2'} />
