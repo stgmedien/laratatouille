@@ -109,7 +109,7 @@ export const en: Dictionary = {
       eyebrow: 'The house',
       title: 'A married couple, one classical school',
       sub: 'A village house on Calle Mayor, open at midday and in the evening.',
-      imageAlt: 'Guests over wine and conversation in the dining room of La Ratatouille',
+      imageAlt: 'Beef fillet in the pan on the kitchen counter, the chef behind it',
     },
     story: {
       eyebrow: 'The hosts',
@@ -118,7 +118,7 @@ export const en: Dictionary = {
         'Timo Kaiser and Gesine Janasik are a restaurateur couple. Both trained in respected establishments in the Black Forest and then spent years deepening the craft in Germany, Austria and Spain.',
       body2:
         'That both are of the trade shows in the evening: what comes out of the kitchen and what happens in the dining room carry the same hand.',
-      imageAlt: 'Guests having dinner in the dining room',
+      imageAlt: 'Guests over wine and conversation at the tables in the dining room',
     },
     hosts: {
       eyebrow: 'Kitchen and dining room',

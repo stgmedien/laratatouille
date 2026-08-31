@@ -107,7 +107,7 @@ export const de = {
       eyebrow: 'Das Haus',
       title: 'Ein Ehepaar, eine klassische Schule',
       sub: 'Ein Dorfhaus in der Calle Mayor, mittags wie abends geöffnet.',
-      imageAlt: 'Gäste bei Wein und Gespräch im Gastraum von La Ratatouille',
+      imageAlt: 'Rinderfilet in der Pfanne auf dem Küchentresen, dahinter der Küchenchef',
     },
     story: {
       eyebrow: 'Die Gastgeber',
@@ -116,7 +116,7 @@ export const de = {
         'Timo Kaiser und Gesine Janasik sind ein Gastronomenehepaar. Beide wurden in renommierten Betrieben im Schwarzwald ausgebildet und haben ihr Handwerk anschließend über Jahre in Deutschland, Österreich und Spanien vertieft.',
       body2:
         'Dass beide vom Fach sind, merkt man am Abend: Was aus der Küche kommt und was im Gastraum passiert, ist dieselbe Handschrift.',
-      imageAlt: 'Gäste beim Abendessen im Gastraum',
+      imageAlt: 'Gäste bei Wein und Gespräch an den Tischen im Gastraum',
     },
     hosts: {
       eyebrow: 'Küche und Gastraum',

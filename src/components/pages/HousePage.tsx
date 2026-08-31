@@ -17,7 +17,7 @@ export async function HousePage({ locale, dict }: { locale: Locale; dict: Dictio
   return (
     <>
       <Hero
-        src="/images/hero.jpg" alt={t.hero.imageAlt}
+        src="/images/kueche.jpg" alt={t.hero.imageAlt}
         eyebrow={t.hero.eyebrow} title={t.hero.title} sub={t.hero.sub}
         height={520} priority
       />
@@ -31,7 +31,7 @@ export async function HousePage({ locale, dict }: { locale: Locale; dict: Dictio
           </div>
           <div className="lr-media" style={{ aspectRatio: '4 / 3' }}>
             <Image
-              src="/images/gastraum.jpg" alt={t.story.imageAlt} fill
+              src="/images/hero.jpg" alt={t.story.imageAlt} fill
               sizes="(max-width: 900px) 100vw, 560px" style={{ objectFit: 'cover' }}
             />
           </div>

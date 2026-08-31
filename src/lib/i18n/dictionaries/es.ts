@@ -109,7 +109,7 @@ export const es: Dictionary = {
       eyebrow: 'La casa',
       title: 'Un matrimonio, una escuela clásica',
       sub: 'Una casa de pueblo en la Calle Mayor, abierta a mediodía y por la noche.',
-      imageAlt: 'Clientes con vino y conversación en el comedor de La Ratatouille',
+      imageAlt: 'Solomillo en la sartén sobre el pase, al fondo el jefe de cocina',
     },
     story: {
       eyebrow: 'Los anfitriones',
@@ -118,7 +118,7 @@ export const es: Dictionary = {
         'Timo Kaiser y Gesine Janasik son un matrimonio de hosteleros. Ambos se formaron en establecimientos de prestigio de la Selva Negra y después profundizaron durante años en su oficio en Alemania, Austria y España.',
       body2:
         'Que los dos sean del oficio se nota por la noche: lo que sale de la cocina y lo que ocurre en el comedor llevan la misma firma.',
-      imageAlt: 'Clientes cenando en el comedor',
+      imageAlt: 'Clientes con vino y conversación en las mesas del comedor',
     },
     hosts: {
       eyebrow: 'Cocina y comedor',
