@@ -29,24 +29,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Skip link — visible only on keyboard focus. */
-.lr-skip {
-  position: absolute;
-  left: -9999px;
-  top: 0;
-  z-index: 100;
-  background: var(--surface-accent);
-  color: var(--text-on-accent);
-  padding: var(--space-12) var(--space-20);
-  border: 0;
-  font: var(--type-eyebrow);
-  letter-spacing: var(--ls-caps);
-  text-transform: uppercase;
-}
-.lr-skip:focus {
-  left: var(--gutter);
-  top: var(--space-12);
-}
 
 /* ---------------------------------------------------------------------------
    Layout utilities. The design-system components are inline-styled, so page
@@ -426,7 +408,7 @@ select.lr-field { appearance: none; padding-right: 40px; cursor: pointer; }
   }
 
   /* Im Druck bleibt nur die Karte stehen. */
-  .lr-skip, .lr-banner, .lr-header, footer { display: none !important; }
+  .lr-banner, .lr-header, footer { display: none !important; }
   main > *:not(.lr-print) { display: none !important; }
 
   .lr-print {

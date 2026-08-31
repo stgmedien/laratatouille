@@ -31,7 +31,6 @@ export const de = {
     close: 'Menü schließen',
     call: 'Anrufen',
     language: 'Sprache',
-    skip: 'Zum Inhalt springen',
     home: 'Startseite',
   },
 
@@ -189,7 +188,7 @@ export const de = {
       privacy: 'Ich habe die Datenschutzhinweise gelesen und bin damit einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verwendet werden.',
       submit: 'Anfrage senden',
       sending: 'Wird gesendet …',
-      groupsHint: 'Ab sechs Personen bitte telefonisch.',
+      groupsHint: 'Ab neun Personen bitte telefonisch.',
     },
     success: {
       title: 'Anfrage ist eingegangen',

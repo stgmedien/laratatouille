@@ -33,7 +33,6 @@ export const en: Dictionary = {
     close: 'Close menu',
     call: 'Call us',
     language: 'Language',
-    skip: 'Skip to content',
     home: 'Home',
   },
 
@@ -191,7 +190,7 @@ export const en: Dictionary = {
       privacy: 'I have read the privacy notice and agree that my details may be used to handle this request.',
       submit: 'Send request',
       sending: 'Sending …',
-      groupsHint: 'Six or more, please call.',
+      groupsHint: 'Nine or more, please call.',
     },
     success: {
       title: 'Request received',

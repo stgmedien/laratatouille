@@ -17,7 +17,6 @@ export async function PageShell({ locale, dict, page, overHero = false, children
 
   return (
     <>
-      <a className="lr-skip" href="#inhalt">{dict.nav.skip}</a>
       {announcement && <AnnouncementBanner text={announcement} />}
       <SiteHeader
         locale={locale}
@@ -25,7 +24,7 @@ export async function PageShell({ locale, dict, page, overHero = false, children
         overHero={overHero}
         activePage={page}
       />
-      <main id="inhalt" className={overHero ? 'lr-main--over-hero' : undefined}>{children}</main>
+      <main className={overHero ? 'lr-main--over-hero' : undefined}>{children}</main>
       <SiteFooter locale={locale} dict={dict} />
     </>
   );

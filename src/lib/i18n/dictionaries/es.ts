@@ -33,7 +33,6 @@ export const es: Dictionary = {
     close: 'Cerrar menú',
     call: 'Llamar',
     language: 'Idioma',
-    skip: 'Ir al contenido',
     home: 'Inicio',
   },
 
@@ -191,7 +190,7 @@ export const es: Dictionary = {
       privacy: 'He leído la política de privacidad y acepto que mis datos se usen para gestionar la solicitud.',
       submit: 'Enviar solicitud',
       sending: 'Enviando …',
-      groupsHint: 'A partir de seis personas, por teléfono.',
+      groupsHint: 'A partir de nueve personas, por teléfono.',
     },
     success: {
       title: 'Solicitud recibida',
