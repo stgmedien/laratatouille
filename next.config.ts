@@ -7,7 +7,13 @@ const nextConfig: NextConfig = {
   // Paket in Ruhe lassen und die Schriften und das Logo mit auf den Server nehmen.
   serverExternalPackages: ['@react-pdf/renderer'],
   outputFileTracingIncludes: {
-    '/admin/druck/**': ['./src/lib/print/fonts/*.ttf', './public/images/logo.png'],
+    '/admin/druck/**': [
+      './src/lib/print/fonts/*.ttf',
+      './public/images/logo.png',
+      // pdfkit lädt seine Standardschriften per dynamischem require — das
+      // sieht der Tracer nicht, ohne sie stirbt die Funktion auf Vercel.
+      './node_modules/pdfkit/js/standard-fonts/**',
+    ],
   },
   images: {
     formats: ['image/avif', 'image/webp'],
