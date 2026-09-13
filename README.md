@@ -159,11 +159,17 @@ sie bleiben als Quellmaterial im Projekt liegen.
   dort erscheinen bis zu vier.
 * Eine Kategorie ohne sichtbare Gerichte wird auf der Website gar nicht erst angezeigt.
 
-**Karte ausdrucken** — der Knopf unter der Karte druckt schmale Blätter im Format 105 × 297 mm,
-also ein DIN-A4-Bogen der Länge nach halbiert. Wo ein neues Blatt beginnt, entscheidet das
-Häkchen „Beim Ausdruck auf einer neuen Karte beginnen“ an der Kategorie. Zurzeit: Vorspeisen und
-Fleisch & Fisch auf dem ersten Blatt, Desserts auf dem zweiten. Ein Blatt fasst etwa 271 mm
-Inhalt; die aktuelle Karte belegt 184 mm, es ist also Platz für weitere Gerichte.
+**Drucken** — `/admin/druck` liefert die Karte als fertiges PDF in allen drei Sprachen: ein
+DIN-A4-Blatt hochkant mit zwei Karten von je 105 × 297 mm nebeneinander, links Vorspeisen und
+Hauptgerichte, rechts Desserts, mit Schnittmarken in der Mitte. Drucken in Originalgröße
+(100 %, nicht „an Seite anpassen“), dann das Blatt der Länge nach halbieren. Wo eine neue Karte
+beginnt, entscheidet das Häkchen „Beim Ausdruck auf einer neuen Karte beginnen“ an der
+Kategorie; je zwei Karten ergeben ein Blatt. Passt eine Karte nicht auf ihre Seite, verkleinert
+das PDF die Schrift stufenweise (bis 75 %), bis es passt. Das PDF entsteht mit `@react-pdf/renderer`
+in `src/lib/print/menu-pdf.tsx`; Schriften (Marcellus, Public Sans — SIL Open Font License) liegen
+in `src/lib/print/fonts/`. Der Knopf „Karte drucken“ auf der öffentlichen Kartenseite druckt
+dasselbe Blatt über den Druckdialog des Browsers. Die bebilderte Anleitung für das Restaurant:
+`docs/Anleitung Speisekarte drucken.pdf`.
 
 **Sprachen** — jedes Gericht hat Reiter für Deutsch, Español und English. Deutsch ist Pflicht;
 bleibt eine Übersetzung leer, zeigt die Website dort den deutschen Text. In der Übersicht steht

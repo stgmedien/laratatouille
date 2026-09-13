@@ -3,7 +3,7 @@ import { Brand } from '@/components/site/Brand';
 import { logout } from '@/app/(admin)/admin/actions';
 
 export function AdminShell({ active, children }: {
-  active: 'karte' | 'menues' | 'hinweise' | 'stimmen' | 'texte';
+  active: 'karte' | 'menues' | 'hinweise' | 'stimmen' | 'texte' | 'druck';
   children: React.ReactNode;
 }) {
   return (
@@ -20,6 +20,7 @@ export function AdminShell({ active, children }: {
             <Link href="/admin/hinweise" aria-current={active === 'hinweise' ? 'page' : undefined}>Hinweise</Link>
             <Link href="/admin/stimmen" aria-current={active === 'stimmen' ? 'page' : undefined}>Gästestimmen</Link>
             <Link href="/admin/texte" aria-current={active === 'texte' ? 'page' : undefined}>Seitentexte</Link>
+            <Link href="/admin/druck" aria-current={active === 'druck' ? 'page' : undefined}>Drucken</Link>
             <Link href="/de" target="_blank" rel="noreferrer">Website ansehen</Link>
             <form action={logout} className="lr-inline-form">
               <button

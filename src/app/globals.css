@@ -395,20 +395,23 @@ select.lr-field { appearance: none; padding-right: 40px; cursor: pointer; }
 }
 
 /* ---------------------------------------------------------------------------
-   Karte zum Ausdrucken. Ein DIN-A4-Blatt der Länge nach halbiert ergibt
-   105 × 297 mm — das schmale, hohe Format klassischer Speisekarten. Auf dem
-   Bildschirm bleibt dieser Baum unsichtbar.
+   Karte zum Ausdrucken. Ein DIN-A4-Blatt der Länge nach halbiert ergibt zwei
+   Karten von 105 × 297 mm — das schmale, hohe Format klassischer Speisekarten.
+   Je zwei Karten stehen nebeneinander auf einem Blatt, Schnittmarken oben und
+   unten zeigen die Mitte. Auf dem Bildschirm bleibt dieser Baum unsichtbar.
    --------------------------------------------------------------------------- */
 .lr-print { display: none; }
 
 @media print {
   @page {
-    size: 105mm 297mm;
-    margin: 13mm 11mm;
+    size: 210mm 297mm;
+    margin: 0;
   }
 
   /* Im Druck bleibt nur die Karte stehen. */
-  .lr-banner, .lr-header, footer { display: none !important; }
+  html, body { margin: 0 !important; padding: 0 !important; min-height: 0 !important; }
+  .lr-banner, .lr-header, body > footer { display: none !important; }
+  main { margin: 0 !important; padding: 0 !important; min-height: 0 !important; }
   main > *:not(.lr-print) { display: none !important; }
 
   .lr-print {
@@ -417,14 +420,38 @@ select.lr-field { appearance: none; padding-right: 40px; cursor: pointer; }
     background: #fff;
   }
 
-  .lr-print-card {
+  .lr-print-sheet {
+    position: relative;
+    display: flex;
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
     break-after: page;
     page-break-after: always;
+  }
+  .lr-print-sheet:last-child { break-after: auto; page-break-after: auto; }
+  .lr-print-sheet::before, .lr-print-sheet::after {
+    content: "";
+    position: absolute;
+    left: 105mm;
+    width: 0;
+    height: 4mm;
+    margin-left: -0.15pt;
+    border-left: 0.3pt solid #9A9087;
+  }
+  .lr-print-sheet::before { top: 6mm; }
+  .lr-print-sheet::after { bottom: 6mm; }
+
+  .lr-print-card {
+    flex: 0 0 105mm;
+    width: 105mm;
+    height: 297mm;
+    box-sizing: border-box;
+    padding: 13mm 11mm;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
   }
-  .lr-print-card:last-child { break-after: auto; page-break-after: auto; }
-  .lr-print-break { display: none; }
 
   .lr-print-head {
     text-align: center;
