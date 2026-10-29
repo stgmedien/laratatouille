@@ -1,19 +1,31 @@
+import type { CSSProperties } from 'react';
 import { Rule } from '@/components/ds';
 import type { LocalisedMenu } from '@/lib/db/types';
 
 /**
- * Feste Menüs unter der Karte. Die Gänge stehen untereinander, getrennt von
+ * Feste Menüs mitten in der Karte, zwischen à la carte und den Desserts. Jedes
+ * Menü steht auf einer leicht abgesetzten Fläche, damit es zwischen den
+ * Gerichten nicht untergeht; die Gänge stehen untereinander, getrennt von
  * feinen Linien — wie auf einer gedruckten Menükarte, ohne Aufzählungspunkte.
  */
-export function SetMenus({ menus }: { menus: LocalisedMenu[] }) {
+export function SetMenus({ menus, style }: { menus: LocalisedMenu[]; style?: CSSProperties }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-56)' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-24)', ...style }}>
       {menus.map((menu) => (
-        <article key={menu.id} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-16)' }}>
+        <section
+          key={menu.id}
+          id={`menue-${menu.id}`}
+          style={{
+            scrollMarginTop: 110,
+            display: 'flex', flexDirection: 'column', gap: 'var(--space-16)',
+            background: 'var(--surface-sunken)', borderRadius: 'var(--radius-lg)',
+            padding: 'var(--space-32) clamp(var(--space-20), 5vw, var(--space-40))',
+          }}
+        >
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 'var(--space-16)', flexWrap: 'wrap' }}>
-            <h3 style={{ font: 'var(--type-section)', color: 'var(--text-heading)', margin: 0 }}>
+            <h2 style={{ font: 'var(--type-section)', color: 'var(--text-heading)', margin: 0 }}>
               {menu.title}
-            </h3>
+            </h2>
             {menu.price && (
               <span style={{
                 font: 'var(--type-price)', color: 'var(--text-muted)',
@@ -49,7 +61,7 @@ export function SetMenus({ menus }: { menus: LocalisedMenu[] }) {
               ))}
             </ol>
           )}
-        </article>
+        </section>
       ))}
     </div>
   );

@@ -99,8 +99,6 @@ export const es: Dictionary = {
     empty: 'De momento no hay ninguna carta publicada.',
     emptyCategory: 'En esta categoría no hay nada en la carta ahora mismo.',
     reserveCta: 'Reservar mesa',
-    setMenuEyebrow: 'Para toda la mesa',
-    setMenuTitle: 'Nuestros menús',
   },
 
   house: {

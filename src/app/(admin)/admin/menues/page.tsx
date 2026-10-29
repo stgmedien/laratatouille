@@ -40,7 +40,7 @@ export default async function MenusPage() {
         <div>
           <h1 style={{ font: 'var(--type-title)', color: 'var(--text-heading)', margin: 0 }}>Menüs</h1>
           <p style={{ font: 'var(--type-body)', color: 'var(--text-muted)', margin: 'var(--space-8) 0 0', maxWidth: '62ch' }}>
-            Feste Menüs stehen auf der Kartenseite unter den Gerichten. Die Gänge tragen Sie
+            Feste Menüs stehen auf der Kartenseite zwischen den Hauptgerichten und den Desserts. Die Gänge tragen Sie
             zeilenweise ein — eine Zeile, ein Gang.
           </p>
         </div>

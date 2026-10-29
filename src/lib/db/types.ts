@@ -80,7 +80,7 @@ export interface AnnouncementRow {
 }
 
 /**
- * Ein festes Menü unter der Karte. Die Gänge stehen als mehrzeiliger Text,
+ * Ein festes Menü in der Karte, vor den Desserts. Die Gänge stehen als mehrzeiliger Text,
  * eine Zeile je Gang.
  */
 export interface MenuRow {

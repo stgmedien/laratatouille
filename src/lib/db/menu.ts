@@ -159,7 +159,7 @@ export async function getActiveAnnouncement(locale: Locale): Promise<string | nu
   return text || null;
 }
 
-/** Die festen Menüs, die unter der Karte stehen. */
+/** Die festen Menüs, die in der Karte vor den Desserts stehen. */
 export async function getMenus(locale: Locale): Promise<LocalisedMenu[]> {
   if (!hasDatabase) return [];
 

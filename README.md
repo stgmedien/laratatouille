@@ -175,9 +175,11 @@ dasselbe Blatt über den Druckdialog des Browsers. Die bebilderte Anleitung für
 bleibt eine Übersetzung leer, zeigt die Website dort den deutschen Text. In der Übersicht steht
 bei unvollständigen Einträgen „Übersetzung fehlt“.
 
-**Menüs** — feste Menüs, die unter der Karte stehen. Titel, Preis, ein Einleitungssatz und die
-Gänge; die Gänge werden zeilenweise eingetragen, eine Zeile je Gang. Dreisprachig wie die Karte.
-Ohne sichtbares Menü verschwindet der Abschnitt.
+**Menüs** — feste Menüs, die auf der Kartenseite zwischen den Hauptgerichten und den Desserts
+stehen, jedes auf einer leicht abgesetzten Fläche. Genauer: vor der Kategorie, mit der beim
+Ausdruck die zweite Karte beginnt; gibt es keine, stehen sie am Ende. Titel, Preis, ein
+Einleitungssatz und die Gänge; die Gänge werden zeilenweise eingetragen, eine Zeile je Gang.
+Dreisprachig wie die Karte. Ohne sichtbares Menü erscheint nichts.
 
 **Hinweise** — ein Banner über der Website, für eine Schließung oder geänderte Zeiten. Mit
 „Anzeigen ab“ und „Anzeigen bis“ erscheint und verschwindet er von allein; den Sommerurlaub

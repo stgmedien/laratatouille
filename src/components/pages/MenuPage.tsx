@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import Image from 'next/image';
 import { MenuItem, Notice, Rule, SectionHeading, Tag } from '@/components/ds';
 import { MenuPrint } from '@/components/site/MenuPrint';
@@ -20,6 +21,12 @@ export async function MenuPage({ locale, dict }: { locale: Locale; dict: Diction
   const usedTags = DISH_TAGS.filter((tag) =>
     categories.some((c) => c.dishes.some((d) => d.tags.includes(tag))),
   );
+
+  // Die festen Menüs stehen zwischen à la carte und den Desserts — genauer: vor
+  // der Kategorie, mit der beim Ausdruck die zweite Karte beginnt. Gibt es keine,
+  // stehen sie am Ende der Karte.
+  const split = categories.findIndex((c, i) => i > 0 && c.startsPrintPage);
+  const menusAt = split === -1 ? categories.length : split;
 
   return (
     <>
@@ -50,7 +57,14 @@ export async function MenuPage({ locale, dict }: { locale: Locale; dict: Diction
 
       <Section>
         {categories.length === 0 ? (
-          <p style={{ font: 'var(--type-body-lg)', color: 'var(--text-muted)', textAlign: 'center' }}>{t.empty}</p>
+          <>
+            <p style={{ font: 'var(--type-body-lg)', color: 'var(--text-muted)', textAlign: 'center' }}>{t.empty}</p>
+            {menus.length > 0 && (
+              <div className="lr-menu-column">
+                <SetMenus menus={menus} style={{ marginTop: 'var(--space-40)' }} />
+              </div>
+            )}
+          </>
         ) : (
           <>
             {/* Sprungmarken zu den Kategorien — funktioniert auch ohne JavaScript. */}
@@ -80,9 +94,13 @@ export async function MenuPage({ locale, dict }: { locale: Locale; dict: Diction
 
             <div className="lr-menu-column">
               {categories.map((c, i) => (
+                <Fragment key={c.id}>
+                {i === menusAt && menus.length > 0 && (
+                  <SetMenus menus={menus} style={{ marginTop: i === 0 ? 0 : 'var(--space-56)' }} />
+                )}
                 <section
-                  key={c.id} id={`kategorie-${c.id}`}
-                  style={{ scrollMarginTop: 110, marginTop: i === 0 ? 0 : 'var(--space-56)' }}
+                  id={`kategorie-${c.id}`}
+                  style={{ scrollMarginTop: 110, marginTop: i === 0 && !(menusAt === 0 && menus.length > 0) ? 0 : 'var(--space-56)' }}
                 >
                   <h2 style={{
                     font: 'var(--type-section)', color: 'var(--text-heading)',
@@ -105,7 +123,11 @@ export async function MenuPage({ locale, dict }: { locale: Locale; dict: Diction
                     ))
                   )}
                 </section>
+                </Fragment>
               ))}
+              {menusAt === categories.length && menus.length > 0 && (
+                <SetMenus menus={menus} style={{ marginTop: 'var(--space-56)' }} />
+              )}
             </div>
 
             <div className="lr-menu-column" style={{
@@ -129,19 +151,6 @@ export async function MenuPage({ locale, dict }: { locale: Locale; dict: Diction
         )}
       </Section>
 
-
-      {menus.length > 0 && (
-        <Section tone="sunken">
-          <div className="lr-menu-column">
-            <SectionHeading
-              eyebrow={dict.menu.setMenuEyebrow}
-              title={dict.menu.setMenuTitle}
-              style={{ marginBottom: 'var(--space-56)' }}
-            />
-            <SetMenus menus={menus} />
-          </div>
-        </Section>
-      )}
     </>
   );
 }

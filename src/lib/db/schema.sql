@@ -115,7 +115,7 @@ ALTER TABLE reviews DROP COLUMN IF EXISTS quote;
 ALTER TABLE categories
   ADD COLUMN IF NOT EXISTS starts_print_page BOOLEAN NOT NULL DEFAULT FALSE;
 
--- Feste Menüs, die unter der Karte stehen. Die Gänge liegen als mehrzeiliger
+-- Feste Menüs, die in der Karte vor den Desserts stehen. Die Gänge liegen als mehrzeiliger
 -- Text, eine Zeile je Gang — das lässt sich im Backend so leicht pflegen wie
 -- ein Gericht und braucht keine zweite Tabelle.
 CREATE TABLE IF NOT EXISTS menus (
